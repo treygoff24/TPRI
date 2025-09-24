@@ -6,6 +6,7 @@ import {
   ShieldCheckIcon,
 } from "lucide-react";
 
+import { GlowCard } from "@/components/common/glow-card";
 import { SectionHeader } from "@/components/common/section-header";
 import { SectionWrapper } from "@/components/common/section-wrapper";
 import type { CompiledSection } from "@/lib/content";
@@ -80,53 +81,86 @@ export function StrategicZonesSection({ section }: { section: CompiledSection })
 
   return (
     <SectionWrapper id={section.meta.id} background={section.meta.background}>
-      <div className="flex flex-col gap-y-10">
-        <SectionHeader title={section.meta.title} summary={section.meta.summary} align="left" />
+      <GlowCard
+        className="rounded-[2.5rem] border-border/50 bg-gradient-to-br from-secondary/12 via-background/70 to-background/40"
+        contentClassName="flex flex-col gap-y-12"
+        glows={[
+          "-top-16 -left-10 h-48 w-48 rounded-full bg-secondary/35",
+          "bottom-[-18%] right-[-12%] h-60 w-60 rounded-full bg-primary/30",
+        ]}
+      >
+        <SectionHeader
+          title={section.meta.title}
+          summary={section.meta.summary}
+          summaryClassName="text-foreground/85"
+          align="left"
+        />
         <div className="grid gap-6 md:grid-cols-2">
-          {CALLOUTS.map((callout) => (
-            <div
+          {CALLOUTS.map((callout, index) => (
+            <GlowCard
               key={callout.title}
-              className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm"
+              className="rounded-[1.8rem] border-border/60 bg-gradient-to-br from-background/50 via-background/70 to-background/45 p-6"
+              contentClassName="space-y-3"
+              glows={
+                index % 2 === 0
+                  ? ["-top-10 right-[-10%] h-36 w-36 rounded-full bg-secondary/30"]
+                  : ["-bottom-12 left-[-12%] h-40 w-40 rounded-full bg-primary/25"]
+              }
             >
               <h3 className="text-lg font-semibold text-foreground">{callout.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{callout.description}</p>
-            </div>
+              <p className="text-sm text-foreground/70">{callout.description}</p>
+            </GlowCard>
           ))}
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          {PILLARS.map((pillar) => (
-            <div
+          {PILLARS.map((pillar, index) => (
+            <GlowCard
               key={pillar.title}
-              className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm"
+              className="rounded-[1.8rem] border-border/60 bg-gradient-to-br from-background/50 via-background/70 to-background/45 p-6"
+              contentClassName="space-y-3"
+              glows={
+                index % 2 === 0
+                  ? ["-top-8 right-[-12%] h-32 w-32 rounded-full bg-secondary/25"]
+                  : ["-bottom-10 left-[-12%] h-36 w-36 rounded-full bg-primary/25"]
+              }
             >
               <pillar.icon className="h-6 w-6 text-primary" aria-hidden />
-              <h3 className="mt-4 text-base font-semibold text-foreground">{pillar.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{pillar.description}</p>
-            </div>
+              <h3 className="text-base font-semibold text-foreground">{pillar.title}</h3>
+              <p className="text-sm text-foreground/70">{pillar.description}</p>
+            </GlowCard>
           ))}
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          {COMPARISON.map((item) => (
-            <div
+          {COMPARISON.map((item, index) => (
+            <GlowCard
               key={item.title}
-              className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm"
+              className="rounded-[1.8rem] border-border/60 bg-gradient-to-br from-background/50 via-background/70 to-background/45 p-6"
+              contentClassName="space-y-4"
+              glows={
+                index === 0
+                  ? ["-top-12 right-[-10%] h-40 w-40 rounded-full bg-secondary/25"]
+                  : ["-bottom-12 left-[-10%] h-40 w-40 rounded-full bg-primary/25"]
+              }
             >
               <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm text-foreground/70">
                 {item.attributes.map((attribute) => (
                   <li key={attribute} className="flex items-start gap-x-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-primary/70" aria-hidden />
+                    <span
+                      className="mt-1 h-2 w-2 rounded-full bg-gradient-to-tr from-primary to-secondary"
+                      aria-hidden
+                    />
                     <span>{attribute}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </GlowCard>
           ))}
         </div>
-        <div className="prose max-w-prose text-sm text-muted-foreground">
+        <div className="prose max-w-prose text-sm text-foreground/75">
           <SectionContent />
         </div>
-      </div>
+      </GlowCard>
     </SectionWrapper>
   );
 }

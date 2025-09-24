@@ -1,3 +1,4 @@
+import { GlowCard } from "@/components/common/glow-card";
 import { ProgressiveContent } from "@/components/common/progressive-content";
 import { SectionHeader } from "@/components/common/section-header";
 import { SectionWrapper } from "@/components/common/section-wrapper";
@@ -90,26 +91,45 @@ export function HowItWorksSection({
 
   return (
     <SectionWrapper id={section.meta.id} background={section.meta.background}>
-      <div className="flex flex-col gap-y-10">
-        <SectionHeader title={section.meta.title} summary={section.meta.summary} align="left" />
+      <GlowCard
+        className="rounded-[2.5rem] border-border/50 bg-gradient-to-br from-secondary/10 via-background/70 to-background/35"
+        contentClassName="flex flex-col gap-y-10"
+        glows={[
+          "-top-16 -left-10 h-48 w-48 rounded-full bg-secondary/35",
+          "bottom-[-16%] right-[-12%] h-60 w-60 rounded-full bg-primary/25",
+        ]}
+      >
+        <SectionHeader
+          title={section.meta.title}
+          summary={section.meta.summary}
+          summaryClassName="text-foreground/85"
+          align="left"
+        />
         <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
           <div className="space-y-6">
             <ProgressiveContent steps={progressiveSteps} />
           </div>
-          <div className="flex flex-col gap-y-6 rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm">
+          <GlowCard
+            className="rounded-[2rem] border-border/60 bg-gradient-to-br from-background/45 via-background/70 to-background/40 p-6"
+            contentClassName="flex flex-col gap-y-6"
+            glows={[
+              "-right-12 top-0 h-48 w-48 rounded-full bg-secondary/30",
+              "-left-12 bottom-[-25%] h-52 w-52 rounded-full bg-primary/30",
+            ]}
+          >
             <h3 className="text-lg font-semibold text-foreground">Coverage Lifecycle</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/70">
               TPRI pairs zone certification with mandatory recovery. Investors join the umbrella
               policy, deploy capital, and receive immediate payouts if authoritarian interference
               occurs. Recovery teams then pursue triple damages against the aggressor.
             </p>
             <FlowDiagram />
-          </div>
+          </GlowCard>
         </div>
-        <div className="prose max-w-prose text-sm text-muted-foreground">
+        <div className="prose max-w-prose text-sm text-foreground/75">
           <SectionContent />
         </div>
-      </div>
+      </GlowCard>
     </SectionWrapper>
   );
 }

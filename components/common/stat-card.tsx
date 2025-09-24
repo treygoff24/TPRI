@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { GlowCard } from "@/components/common/glow-card";
 import type { Stat } from "@/content/schema";
 import { cn } from "@/lib/utils";
 
@@ -66,22 +67,29 @@ export function StatCard({ stat, highlight = false }: StatCardProps) {
   const displayValue = formatValue(stat, animated);
 
   return (
-    <div
+    <GlowCard
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-border/60 bg-background/75 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-elevated",
+        "h-full rounded-[1.8rem] border-border/60 bg-gradient-to-br from-background/50 via-background/70 to-background/45 p-6 transition hover:-translate-y-1 hover:shadow-elevated",
         highlight &&
-          "border-primary/60 bg-gradient-to-br from-primary/15 via-background to-background",
+          "border-primary/60 bg-gradient-to-br from-primary/25 via-primary/15 to-background/40",
       )}
+      contentClassName="flex h-full flex-col gap-y-3"
+      glows={
+        highlight
+          ? [
+              "-top-12 right-[-10%] h-40 w-40 rounded-full bg-primary/35",
+              "-bottom-14 left-[-12%] h-40 w-40 rounded-full bg-secondary/30",
+            ]
+          : ["-top-10 right-[-12%] h-36 w-36 rounded-full bg-secondary/25"]
+      }
     >
-      <div className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+      <div className="text-xs font-semibold uppercase tracking-[0.35em] text-foreground/60">
         {stat.label}
       </div>
-      <div className="mt-4 text-pretty text-4xl font-semibold leading-tight text-foreground tabular-nums">
+      <div className="mt-2 text-pretty text-4xl font-semibold leading-tight text-foreground tabular-nums">
         {stat.unit === "raw" ? Math.round(animated).toLocaleString() : displayValue}
       </div>
-      {stat.tooltip ? (
-        <p className="mt-3 text-sm text-muted-foreground/90">{stat.tooltip}</p>
-      ) : null}
-    </div>
+      {stat.tooltip ? <p className="text-sm text-foreground/70">{stat.tooltip}</p> : null}
+    </GlowCard>
   );
 }

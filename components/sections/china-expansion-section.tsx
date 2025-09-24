@@ -1,4 +1,5 @@
 import { InteractiveMap } from "@/components/common/interactive-map";
+import { GlowCard } from "@/components/common/glow-card";
 import { SectionHeader } from "@/components/common/section-header";
 import { SectionWrapper } from "@/components/common/section-wrapper";
 import { StatCard } from "@/components/common/stat-card";
@@ -50,23 +51,51 @@ export function ChinaExpansionSection({
   return (
     <SectionWrapper id={section.meta.id} background={section.meta.background}>
       <div className="flex flex-col gap-y-12">
-        <SectionHeader title={section.meta.title} summary={section.meta.summary} align="left" />
-        <div className="prose prose-invert max-w-prose text-base leading-relaxed text-foreground/80 prose-strong:text-accent prose-p:text-foreground/85 prose-li:text-foreground/80 marker:text-accent">
-          <SectionContent />
-        </div>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-          <div className="flex flex-col gap-8">
+        <GlowCard
+          className="rounded-[2.5rem] border-border/50 bg-gradient-to-br from-secondary/10 via-background/70 to-background/35"
+          contentClassName="flex flex-col gap-y-8"
+          glows={[
+            "-top-16 -left-12 h-52 w-52 rounded-full bg-secondary/35",
+            "bottom-[-18%] right-[-12%] h-64 w-64 rounded-full bg-primary/30",
+          ]}
+        >
+          <SectionHeader
+            title={section.meta.title}
+            summary={section.meta.summary}
+            summaryClassName="text-foreground/85"
+            align="left"
+          />
+          <div className="prose max-w-prose text-base leading-relaxed text-foreground/85 prose-strong:text-accent prose-p:text-foreground/85 prose-li:text-foreground/80 marker:text-accent">
+            <SectionContent />
+          </div>
+        </GlowCard>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+          <GlowCard
+            className="rounded-[2.2rem] border-border/60 bg-gradient-to-br from-background/50 via-background/70 to-background/40"
+            contentClassName="flex flex-col gap-y-6"
+            glows={[
+              "-left-10 top-0 h-48 w-48 rounded-full bg-secondary/30",
+              "-right-10 bottom-[-20%] h-56 w-56 rounded-full bg-primary/30",
+            ]}
+          >
             <h3 className="text-lg font-semibold text-foreground">Timeline of PRC Expansion</h3>
             <Timeline events={timeline} />
-          </div>
-          <div className="flex flex-col gap-6">
+          </GlowCard>
+          <GlowCard
+            className="rounded-[2.2rem] border-border/60 bg-gradient-to-br from-background/45 via-background/70 to-background/40"
+            contentClassName="flex flex-col gap-y-6"
+            glows={[
+              "-right-12 top-0 h-52 w-52 rounded-full bg-accent/30",
+              "-left-12 bottom-[-25%] h-60 w-60 rounded-full bg-primary/25",
+            ]}
+          >
             <h3 className="text-lg font-semibold text-foreground">Recognition Map</h3>
             <InteractiveMap features={map.features} recognition={map.recognition} />
-          </div>
+          </GlowCard>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {stats.map((stat) => (
-            <StatCard key={stat.id} stat={stat} />
+        <div className="grid gap-6 md:grid-cols-3">
+          {stats.map((stat, index) => (
+            <StatCard key={stat.id} stat={stat} highlight={index === 0} />
           ))}
         </div>
       </div>

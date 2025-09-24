@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { CoalitionForm } from "@/components/common/coalition-form";
+import { GlowCard } from "@/components/common/glow-card";
 import { SectionHeader } from "@/components/common/section-header";
 import { SectionWrapper } from "@/components/common/section-wrapper";
 import { trackEvent } from "@/lib/analytics";
@@ -62,29 +63,44 @@ export function ContactSection({
 
   return (
     <SectionWrapper id={meta.id} background={meta.background}>
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+      <GlowCard
+        className="rounded-[2.5rem] border-border/50 bg-gradient-to-br from-secondary/12 via-background/70 to-background/40"
+        contentClassName="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
+        glows={[
+          "-top-16 -left-8 h-48 w-48 rounded-full bg-secondary/30",
+          "bottom-[-18%] right-[-12%] h-60 w-60 rounded-full bg-primary/30",
+        ]}
+      >
         <div className="flex flex-col gap-y-8">
-          <SectionHeader title={meta.title} summary={meta.summary} align="left" />
-          <div className="prose max-w-prose text-sm text-muted-foreground">
-            {content}
-          </div>
-          <div
+          <SectionHeader
+            title={meta.title}
+            summary={meta.summary}
+            summaryClassName="text-foreground/85"
+            align="left"
+          />
+          <div className="prose max-w-prose text-sm text-foreground/75">{content}</div>
+          <GlowCard
             id="briefing"
-            className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm"
+            className="rounded-[2rem] border-border/60 bg-gradient-to-br from-background/45 via-background/70 to-background/40 p-6"
+            contentClassName="flex flex-col gap-y-4"
+            glows={[
+              "-right-12 top-0 h-48 w-48 rounded-full bg-secondary/30",
+              "-left-12 bottom-[-25%] h-52 w-52 rounded-full bg-primary/30",
+            ]}
           >
             <h3 className="text-base font-semibold text-foreground">General contact</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/70">
               Send a secure note to the policy team. We respond within one business day.
             </p>
             <form
-              className="mt-4 flex flex-col gap-y-4"
+              className="flex flex-col gap-y-4"
               onSubmit={form.handleSubmit(onSubmit)}
               noValidate
             >
               <label className="flex flex-col text-sm">
                 <span className="font-semibold text-foreground">Name</span>
                 <input
-                  className="mt-2 rounded-full border border-border/60 bg-background px-4 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="mt-2 rounded-full border border-border/50 bg-background/80 px-4 py-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...form.register("name")}
                 />
                 {form.formState.errors.name ? (
@@ -97,7 +113,7 @@ export function ContactSection({
                 <span className="font-semibold text-foreground">Email</span>
                 <input
                   type="email"
-                  className="mt-2 rounded-full border border-border/60 bg-background px-4 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="mt-2 rounded-full border border-border/50 bg-background/80 px-4 py-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...form.register("email")}
                 />
                 {form.formState.errors.email ? (
@@ -110,7 +126,7 @@ export function ContactSection({
                 <span className="font-semibold text-foreground">Message</span>
                 <textarea
                   rows={4}
-                  className="mt-2 rounded-3xl border border-border/60 bg-background px-4 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="mt-2 rounded-3xl border border-border/50 bg-background/80 px-4 py-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...form.register("message")}
                 />
                 {form.formState.errors.message ? (
@@ -121,7 +137,7 @@ export function ContactSection({
               </label>
               <button
                 type="submit"
-                className="rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground hover:bg-secondary/90 disabled:opacity-60"
+                className="rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground shadow-soft-lg hover:bg-secondary/90 disabled:opacity-60"
                 disabled={status === "sending"}
               >
                 {status === "sending" ? "Sending…" : "Send message"}
@@ -139,7 +155,7 @@ export function ContactSection({
             </form>
             <button
               type="button"
-              className="mt-4 inline-flex items-center justify-center rounded-full border border-border/60 px-4 py-2 text-sm font-semibold text-muted-foreground hover:border-foreground"
+              className="inline-flex items-center justify-center rounded-full border border-border/50 px-4 py-2 text-sm font-semibold text-foreground/70 transition hover:border-foreground"
               onClick={() => {
                 loadCalendly();
                 if (window.Calendly) {
@@ -153,25 +169,32 @@ export function ContactSection({
             >
               Book a briefing via Calendly
             </button>
-            <p className="mt-2 text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/65">
               If Calendly is blocked on your network, email{" "}
               <a href="mailto:briefings@tpri.org">briefings@tpri.org</a> to coordinate a briefing.
             </p>
-          </div>
+          </GlowCard>
         </div>
-        <div className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm">
+        <GlowCard
+          className="rounded-[2rem] border-border/60 bg-gradient-to-br from-background/45 via-background/70 to-background/40 p-6"
+          contentClassName="space-y-4"
+          glows={[
+            "-left-12 top-0 h-48 w-48 rounded-full bg-secondary/30",
+            "-right-12 bottom-[-25%] h-52 w-52 rounded-full bg-primary/30",
+          ]}
+        >
           <h3 id="coalition" className="text-base font-semibold text-foreground">
             Join the coalition
           </h3>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/70">
             Align chambers of commerce, investors, and policy advocates under a single operating
             picture for TPRI.
           </p>
-          <div id="briefing-form" className="mt-4">
+          <div id="briefing-form" className="mt-2">
             <CoalitionForm />
           </div>
-        </div>
-      </div>
+        </GlowCard>
+      </GlowCard>
     </SectionWrapper>
   );
 }
