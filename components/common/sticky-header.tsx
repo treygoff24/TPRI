@@ -97,7 +97,7 @@ export function StickyHeader() {
           <div className="flex items-center gap-x-2">
             <Link
               href="#contact"
-              className="group relative inline-flex items-center justify-center gap-x-2 overflow-hidden rounded-full px-4 py-2 text-sm font-semibold text-white shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group relative inline-flex items-center justify-center gap-x-2 overflow-hidden rounded-full px-5 py-2 text-sm font-semibold text-white shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background whitespace-nowrap"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary opacity-90 transition duration-200 group-hover:opacity-100" />
               <span className="absolute inset-0 -z-10 translate-y-2 scale-105 bg-primary/40 blur-lg opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100" />
