@@ -1,11 +1,31 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-
 import type { FeatureCollection } from "geojson";
 
 import { recognitionSchema, type RecognitionRecord } from "../content/schema";
 
-const MAP_ROOT = path.join(process.cwd(), "data/map");
+const MAP_DIRECTORY = "data/map" as const;
+
+type NodeModules = {
+  readFile: typeof import("node:fs/promises").readFile;
+  path: typeof import("node:path");
+};
+
+let cachedModules: NodeModules | null = null;
+
+async function getNodeModules(): Promise<NodeModules> {
+  if (cachedModules) return cachedModules;
+  const [{ readFile }, path] = await Promise.all([
+    import("node:fs/promises"),
+    import("node:path"),
+  ]);
+  cachedModules = { readFile, path };
+  return cachedModules;
+}
+
+async function readMapFile(fileName: string): Promise<string> {
+  const { readFile, path } = await getNodeModules();
+  const fullPath = path.join(process.cwd(), MAP_DIRECTORY, fileName);
+  return readFile(fullPath, "utf-8");
+}
 
 export type MapData = {
   features: FeatureCollection;
@@ -13,14 +33,12 @@ export type MapData = {
 };
 
 export async function loadMapFeatures(): Promise<FeatureCollection> {
-  const file = path.join(MAP_ROOT, "countries.geo.json");
-  const raw = await readFile(file, "utf-8");
+  const raw = await readMapFile("countries.geo.json");
   return JSON.parse(raw) as FeatureCollection;
 }
 
 export async function loadRecognition(): Promise<RecognitionRecord[]> {
-  const file = path.join(MAP_ROOT, "recognition.json");
-  const raw = await readFile(file, "utf-8");
+  const raw = await readMapFile("recognition.json");
   const json = JSON.parse(raw);
   if (!Array.isArray(json)) {
     throw new Error("Recognition dataset must be an array.");
