@@ -36,7 +36,9 @@ export function SectionHeader({
         <h2 className="text-balance font-heading text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
           {title}
         </h2>
-        {summary ? <p className="max-w-prose text-lg text-muted-foreground">{summary}</p> : null}
+        {summary ? (
+          <p className="max-w-prose text-pretty text-lg text-muted-foreground">{summary}</p>
+        ) : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-3">{actions}</div> : null}
     </div>

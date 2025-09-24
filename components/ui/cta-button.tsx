@@ -32,10 +32,11 @@ type CTAButtonProps = {
 };
 
 const VARIANT_TO_CLASSES: Record<ButtonVariant, string> = {
-  primary: "bg-accent text-accent-foreground hover:bg-accent/90",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/90",
-  outline: "border border-border hover:border-foreground",
-  ghost: "hover:bg-muted/60",
+  primary:
+    "bg-gradient-to-r from-primary via-accent to-secondary text-white shadow-md hover:brightness-110",
+  secondary: "border border-border/70 bg-muted/70 text-foreground hover:bg-muted/90",
+  outline: "border border-border/80 text-foreground hover:border-foreground",
+  ghost: "text-foreground/80 hover:bg-muted/60",
 };
 
 export function CTAButton({ cta, className, onClick }: CTAButtonProps) {
@@ -46,7 +47,7 @@ export function CTAButton({ cta, className, onClick }: CTAButtonProps) {
   }, [cta.id, onClick]);
 
   const commonClasses = cn(
-    "inline-flex items-center justify-center gap-x-2 rounded-full px-6 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+    "inline-flex items-center justify-center gap-x-2 rounded-full px-6 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     VARIANT_TO_CLASSES[cta.variant ?? "primary"],
     className,
   );

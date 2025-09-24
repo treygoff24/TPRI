@@ -11,7 +11,8 @@ function formatValue(stat: Stat, value: number) {
       return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-        maximumFractionDigits: value >= 1_000_000 ? 0 : 1,
+        notation: value >= 1_000_000_000 ? "compact" : "standard",
+        maximumFractionDigits: value >= 1_000_000 ? 1 : 2,
       }).format(value);
     case "%":
       return `${value.toFixed(1)}%`;
@@ -67,18 +68,20 @@ export function StatCard({ stat, highlight = false }: StatCardProps) {
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-border/60 bg-background/70 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-elevated",
+        "group relative overflow-hidden rounded-3xl border border-border/60 bg-background/75 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-elevated",
         highlight &&
-          "border-primary/60 bg-gradient-to-br from-primary/10 via-background to-background",
+          "border-primary/60 bg-gradient-to-br from-primary/15 via-background to-background",
       )}
     >
       <div className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
         {stat.label}
       </div>
-      <div className="mt-4 text-4xl font-semibold text-foreground">
+      <div className="mt-4 text-pretty text-4xl font-semibold leading-tight text-foreground tabular-nums">
         {stat.unit === "raw" ? Math.round(animated).toLocaleString() : displayValue}
       </div>
-      {stat.tooltip ? <p className="mt-3 text-sm text-muted-foreground">{stat.tooltip}</p> : null}
+      {stat.tooltip ? (
+        <p className="mt-3 text-sm text-muted-foreground/90">{stat.tooltip}</p>
+      ) : null}
     </div>
   );
 }
