@@ -6,7 +6,6 @@ import { StatCard } from "@/components/common/stat-card";
 import { Timeline } from "@/components/common/timeline";
 import type { KeyMetrics, Stat, TimelineEvent } from "@/content/schema";
 import type { CompiledSection } from "@/lib/content";
-import type { MapData } from "@/lib/map";
 
 export type SimpleMetric = {
   id: string;
@@ -31,13 +30,11 @@ function convertToStat(metric: SimpleMetric): Stat {
 export function ChinaExpansionSection({
   section,
   timeline,
-  map,
   keyMetrics,
   expansionMetrics,
 }: {
   section: CompiledSection;
   timeline: TimelineEvent[];
-  map: MapData;
   keyMetrics: KeyMetrics;
   expansionMetrics: SimpleMetric[];
 }) {
@@ -90,7 +87,7 @@ export function ChinaExpansionSection({
             ]}
           >
             <h3 className="text-lg font-semibold text-foreground">Recognition Map</h3>
-            <InteractiveMap features={map.features} recognition={map.recognition} />
+            <InteractiveMap />
           </GlowCard>
         </div>
         <div className="grid gap-6 md:grid-cols-3">

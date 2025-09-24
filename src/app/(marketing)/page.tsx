@@ -15,7 +15,6 @@ import { FAQSection } from "@/components/sections/faq-section";
 import { DownloadsSection } from "@/components/sections/downloads-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { loadAllContent } from "@/lib/content";
-import { loadMapData } from "@/lib/map-data";
 
 export const experimental_ppr = false;
 export const dynamic = "force-dynamic";
@@ -23,8 +22,6 @@ export const dynamic = "force-dynamic";
 export default async function MarketingPage() {
   const { sections, howItWorks, faqs, downloads, endorsements, metrics, timeline } =
     await loadAllContent();
-  const mapData = await loadMapData();
-
   const sectionById = Object.fromEntries(
     sections.map((section) => [section.meta.id, section] as const),
   );
@@ -59,7 +56,6 @@ export default async function MarketingPage() {
             <ChinaExpansionSection
               section={problem}
               timeline={timeline}
-              map={mapData}
               keyMetrics={metrics}
               expansionMetrics={chinaMetrics}
             />
