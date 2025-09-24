@@ -39,3 +39,6 @@ desktop.ini
 # Misc
 *.pem
 
+# Generated sitemap assets
+/public/sitemap*.xml
+/public/robots.txt

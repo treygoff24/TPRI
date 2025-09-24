@@ -4,10 +4,12 @@ import { MiniTocProvider } from "@/components/common/mini-toc-provider";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ParaguayCountdownSection } from "@/components/sections/paraguay-countdown-section";
 import { ChinaExpansionSection } from "@/components/sections/china-expansion-section";
+import type { SimpleMetric } from "@/components/sections/china-expansion-section";
 import { ExecutiveSummarySection } from "@/components/sections/executive-summary-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { StrategicZonesSection } from "@/components/sections/strategic-zones-section";
 import { CaseStudySection } from "@/components/sections/case-study-section";
+import type { CaseMetric } from "@/components/sections/case-study-section";
 import { ComparisonSection } from "@/components/sections/comparison-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { DownloadsSection } from "@/components/sections/downloads-section";
@@ -41,8 +43,8 @@ export default async function MarketingPage() {
     .map((section) => ({ id: section.meta.id, label: section.meta.title }));
 
   const heroMetrics = metrics;
-  const chinaMetrics = metricsData.chinaExpansionStats;
-  const caseMetrics = metricsData.caseStudyMetrics;
+  const chinaMetrics = metricsData.chinaExpansionStats as SimpleMetric[];
+  const caseMetrics = metricsData.caseStudyMetrics as CaseMetric[];
 
   return (
     <MiniTocProvider sections={tocSections}>
@@ -76,7 +78,9 @@ export default async function MarketingPage() {
           {downloadsSection ? (
             <DownloadsSection section={downloadsSection} downloads={downloads} />
           ) : null}
-          {contact ? <ContactSection section={contact} /> : null}
+          {contact ? (
+            <ContactSection meta={contact.meta} content={<contact.Content />} />
+          ) : null}
         </div>
         <MiniToc />
       </div>

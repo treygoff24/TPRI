@@ -7,7 +7,7 @@ import type { KeyMetrics, Stat, TimelineEvent } from "@/content/schema";
 import type { CompiledSection } from "@/lib/content";
 import type { MapData } from "@/lib/map";
 
-type SimpleMetric = {
+export type SimpleMetric = {
   id: string;
   label: string;
   value: number;

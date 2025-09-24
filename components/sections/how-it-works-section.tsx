@@ -82,6 +82,11 @@ export function HowItWorksSection({
   steps: HowItWorksStep[];
 }) {
   const SectionContent = section.Content;
+  const progressiveSteps = steps.map((step) => ({
+    id: step.id,
+    label: step.label,
+    content: <step.Content />,
+  }));
 
   return (
     <SectionWrapper id={section.meta.id} background={section.meta.background}>
@@ -89,7 +94,7 @@ export function HowItWorksSection({
         <SectionHeader title={section.meta.title} summary={section.meta.summary} align="left" />
         <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
           <div className="space-y-6">
-            <ProgressiveContent steps={steps} />
+            <ProgressiveContent steps={progressiveSteps} />
           </div>
           <div className="flex flex-col gap-y-6 rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm">
             <h3 className="text-lg font-semibold text-foreground">Coverage Lifecycle</h3>

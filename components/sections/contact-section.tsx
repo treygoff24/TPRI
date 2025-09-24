@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -7,11 +7,16 @@ import { CoalitionForm } from "@/components/common/coalition-form";
 import { SectionHeader } from "@/components/common/section-header";
 import { SectionWrapper } from "@/components/common/section-wrapper";
 import { trackEvent } from "@/lib/analytics";
-import type { CompiledSection } from "@/lib/content";
+import type { SectionFrontmatter } from "@/content/schema";
 import { contactFormSchema, type ContactFormData } from "@/lib/forms";
 
-export function ContactSection({ section }: { section: CompiledSection }) {
-  const SectionContent = section.Content;
+export function ContactSection({
+  meta,
+  content,
+}: {
+  meta: SectionFrontmatter;
+  content: ReactNode;
+}) {
   const form = useForm<ContactFormData>({ resolver: zodResolver(contactFormSchema) });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [calendlyLoaded, setCalendlyLoaded] = useState(false);
@@ -56,12 +61,12 @@ export function ContactSection({ section }: { section: CompiledSection }) {
   }, [calendlyLoaded]);
 
   return (
-    <SectionWrapper id={section.meta.id} background={section.meta.background}>
+    <SectionWrapper id={meta.id} background={meta.background}>
       <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <div className="flex flex-col gap-y-8">
-          <SectionHeader title={section.meta.title} summary={section.meta.summary} align="left" />
+          <SectionHeader title={meta.title} summary={meta.summary} align="left" />
           <div className="prose max-w-prose text-sm text-muted-foreground">
-            <SectionContent />
+            {content}
           </div>
           <div
             id="briefing"

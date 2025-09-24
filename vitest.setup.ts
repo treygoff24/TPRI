@@ -2,7 +2,10 @@ import "@testing-library/jest-dom/vitest";
 import { vi } from "vitest";
 import React from "react";
 
-global.IntersectionObserver = class implements IntersectionObserver {
+class IntersectionObserverMock implements IntersectionObserver {
+  readonly root: Element | Document | null = null;
+  readonly rootMargin = "0px";
+  readonly thresholds: ReadonlyArray<number> = [0];
   private readonly callback: IntersectionObserverCallback;
 
   constructor(callback: IntersectionObserverCallback) {
@@ -10,6 +13,7 @@ global.IntersectionObserver = class implements IntersectionObserver {
   }
 
   disconnect(): void {}
+
   observe(element: Element): void {
     this.callback(
       [
@@ -26,17 +30,29 @@ global.IntersectionObserver = class implements IntersectionObserver {
       this,
     );
   }
+
   takeRecords(): IntersectionObserverEntry[] {
     return [];
   }
-  unobserve(): void {}
-};
 
-global.ResizeObserver = class {
-  observe(): void {}
   unobserve(): void {}
+}
+
+globalThis.IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;
+
+class ResizeObserverMock implements ResizeObserver {
+  constructor(private readonly callback: ResizeObserverCallback) {}
+
+  observe(): void {
+    this.callback([], this);
+  }
+
+  unobserve(): void {}
+
   disconnect(): void {}
-};
+}
+
+globalThis.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,

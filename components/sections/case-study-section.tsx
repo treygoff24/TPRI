@@ -5,7 +5,7 @@ import { StatCard } from "@/components/common/stat-card";
 import type { Endorsement, Stat } from "@/content/schema";
 import type { CompiledSection } from "@/lib/content";
 
-type CaseMetric = {
+export type CaseMetric = {
   id: string;
   label: string;
   value: number;

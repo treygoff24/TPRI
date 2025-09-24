@@ -1,12 +1,18 @@
 "use client";
 
 import * as Tabs from "@radix-ui/react-tabs";
+import type { ReactNode } from "react";
 
-import type { HowItWorksStep } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
+export type ProgressiveContentStep = {
+  id: string;
+  label: string;
+  content: ReactNode;
+};
+
 type ProgressiveContentProps = {
-  steps: HowItWorksStep[];
+  steps: ProgressiveContentStep[];
 };
 
 export function ProgressiveContent({ steps }: ProgressiveContentProps) {
@@ -37,7 +43,7 @@ export function ProgressiveContent({ steps }: ProgressiveContentProps) {
           value={step.id}
           className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm"
         >
-          <step.Content />
+          {step.content}
         </Tabs.Content>
       ))}
     </Tabs.Root>

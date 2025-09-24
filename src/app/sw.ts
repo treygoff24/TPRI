@@ -1,4 +1,8 @@
+/// <reference lib="webworker" />
+
 export {}; // Custom service worker for offline downloads and lightweight caching.
+
+declare const self: ServiceWorkerGlobalScope;
 
 const VERSION = "1.0.0";
 const DOWNLOAD_CACHE = `tpri-downloads-${VERSION}`;
@@ -40,7 +44,7 @@ async function precacheDownloads(paths: string[]) {
   );
 }
 
-self.addEventListener("install", (event) => {
+self.addEventListener("install", (event: ExtendableEvent) => {
   event.waitUntil(
     (async () => {
       const downloads = await readOfflineManifest();
@@ -50,7 +54,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", (event: ExtendableEvent) => {
   event.waitUntil(
     (async () => {
       const validCaches = new Set([DOWNLOAD_CACHE, DATA_CACHE]);
@@ -87,7 +91,7 @@ async function cacheFirst(request: Request, cacheName: string) {
   }
 }
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener("fetch", (event: FetchEvent) => {
   const { request } = event;
 
   if (request.method !== "GET") {

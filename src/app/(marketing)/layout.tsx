@@ -1,5 +1,6 @@
-import Script from "next/script";
 import type { Metadata } from "next";
+import Script from "next/script";
+import { Suspense } from "react";
 
 import { fontVariables } from "@/app/fonts";
 import { Providers } from "@/components/common/providers";
@@ -22,44 +23,46 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${fontVariables} bg-background text-foreground antialiased`}>
-        <Providers>
-          <ScrollIndicator />
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
-          <StickyHeader />
-          <div className="relative">
-            <main id="main-content" className="flex min-h-screen flex-col">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          {analyticsId ? (
-            <>
-              <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
-                strategy="afterInteractive"
-              />
-              <Script
-                id="tpri-gtag"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    `window.dataLayer = window.dataLayer || [];
+        <Suspense fallback={null}>
+          <Providers>
+            <ScrollIndicator />
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <StickyHeader />
+            <div className="relative">
+              <main id="main-content" className="flex min-h-screen flex-col">
+                {children}
+              </main>
+              <Footer />
+            </div>
+            {analyticsId ? (
+              <>
+                <Script
+                  src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
+                  strategy="afterInteractive"
+                />
+                <Script
+                  id="tpri-gtag"
+                  strategy="afterInteractive"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}\n` +
-                    `gtag('js', new Date());\n` +
-                    `window.gtag = gtag;\n` +
-                    `gtag('config', '${analyticsId}', { anonymize_ip: true });`,
-                }}
-              />
-            </>
-          ) : null}
-          <Script
-            id="tpri-jsonld"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-        </Providers>
+                      `gtag('js', new Date());\n` +
+                      `window.gtag = gtag;\n` +
+                      `gtag('config', '${analyticsId}', { anonymize_ip: true });`,
+                  }}
+                />
+              </>
+            ) : null}
+            <Script
+              id="tpri-jsonld"
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+          </Providers>
+        </Suspense>
       </body>
     </html>
   );
