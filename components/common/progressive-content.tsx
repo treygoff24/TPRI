@@ -1,29 +1,54 @@
 "use client";
 
 import * as Tabs from "@radix-ui/react-tabs";
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-export type ProgressiveContentStep = {
+type ContentStep = {
   id: string;
   label: string;
   content: ReactNode;
 };
 
+type ComponentStep = {
+  id: string;
+  label: string;
+  Content: ComponentType;
+};
+
+export type ProgressiveContentStep = ContentStep | ComponentStep;
+
 type ProgressiveContentProps = {
   steps: ProgressiveContentStep[];
 };
+
+function isComponentStep(step: ProgressiveContentStep): step is ComponentStep {
+  return typeof (step as ComponentStep).Content === "function";
+}
 
 export function ProgressiveContent({ steps }: ProgressiveContentProps) {
   if (!steps.length) return null;
 
   const defaultStep = steps[0]?.id ?? "overview";
 
+  const resolvedSteps = steps.map<ContentStep>((step) => {
+    if (isComponentStep(step)) {
+      const StepComponent = step.Content;
+      return {
+        id: step.id,
+        label: step.label,
+        content: <StepComponent />,
+      };
+    }
+
+    return step;
+  });
+
   return (
     <Tabs.Root defaultValue={defaultStep} className="flex flex-col gap-y-8">
       <Tabs.List className="flex flex-wrap gap-2 rounded-full border border-border/60 bg-background/80 p-2 shadow-sm">
-        {steps.map((step) => (
+        {resolvedSteps.map((step) => (
           <Tabs.Trigger
             key={step.id}
             value={step.id}
@@ -37,7 +62,7 @@ export function ProgressiveContent({ steps }: ProgressiveContentProps) {
           </Tabs.Trigger>
         ))}
       </Tabs.List>
-      {steps.map((step) => (
+      {resolvedSteps.map((step) => (
         <Tabs.Content
           key={step.id}
           value={step.id}
