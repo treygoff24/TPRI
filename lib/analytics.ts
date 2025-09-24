@@ -8,7 +8,20 @@ const GA4_MEASUREMENT_ID =
 
 function analyticsDisabled() {
   if (typeof window === "undefined") return true;
-  if (window.doNotTrack === "1" || navigator.doNotTrack === "1") return true;
+
+  const win = window as Window & { doNotTrack?: string | null };
+  const nav =
+    typeof navigator !== "undefined"
+      ? ((navigator as Navigator & {
+          doNotTrack?: string | null;
+          globalPrivacyControl?: boolean;
+        }) || null)
+      : null;
+
+  if (win.doNotTrack === "1") return true;
+  if (nav?.doNotTrack === "1") return true;
+  if (nav?.globalPrivacyControl === true) return true;
+
   return !GA4_MEASUREMENT_ID;
 }
 
@@ -44,11 +57,6 @@ declare global {
     dataLayer?: Array<Record<string, unknown>>;
     gtag?: (...args: unknown[]) => void;
     doNotTrack?: string | null;
-  }
-
-  interface Navigator {
-    doNotTrack?: string | null;
-    globalPrivacyControl?: boolean;
   }
 }
 
