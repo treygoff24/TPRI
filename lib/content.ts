@@ -92,10 +92,11 @@ export async function loadSections(): Promise<CompiledSection[]> {
       });
 
       const parsedMeta = sectionFrontmatterSchema.parse(frontmatter);
+      const ContentComponent: ComponentType = () => content;
       return {
         meta: parsedMeta,
         slug: file.replace(/\.mdx$/, ""),
-        Content: content,
+        Content: ContentComponent,
       } satisfies CompiledSection;
     }),
   );
@@ -128,10 +129,11 @@ export async function loadHowItWorksSteps(): Promise<HowItWorksStep[]> {
         components: mdxComponents,
       });
 
+      const ContentComponent: ComponentType = () => content;
       return {
         id,
         label: labelMap[id] ?? id,
-        Content: content,
+        Content: ContentComponent,
       } satisfies HowItWorksStep;
     }),
   );
