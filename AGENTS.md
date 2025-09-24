@@ -19,6 +19,11 @@ Keep contributions focused: aim for deliberate changes, document them clearly, a
 - `npm run test`, `npm run test:watch`, and `npm run test:e2e` execute Vitest units and Playwright end-to-end flows; add `npm run test:a11y` before accessibility-sensitive merges.
 - `npm run test:lighthouse` runs LHCI with the ≥95 score gate; expect local installs of Chrome.
 
+### Agent Workflow Requirements
+
+- After **every** code or content change, run `npm run lint` followed by `npm run build` before responding to the user.
+- If lint or build fails, fix the issue and rerun the failed command(s) until both complete successfully; only then report back to the user.
+
 ## Coding Style & Naming Conventions
 
 - Prettier (`npm run format`) owns whitespace; keep 2-space indentation and trailing commas enabled.

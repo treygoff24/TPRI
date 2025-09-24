@@ -6,6 +6,7 @@ export type SectionHeaderProps = {
   summary?: string;
   align?: "left" | "center";
   actions?: React.ReactNode;
+  summaryClassName?: string;
 };
 
 export function SectionHeader({
@@ -14,6 +15,7 @@ export function SectionHeader({
   summary,
   align = "left",
   actions,
+  summaryClassName,
 }: SectionHeaderProps) {
   return (
     <div
@@ -37,7 +39,14 @@ export function SectionHeader({
           {title}
         </h2>
         {summary ? (
-          <p className="max-w-prose text-pretty text-lg text-muted-foreground">{summary}</p>
+          <p
+            className={cn(
+              "max-w-prose text-pretty text-lg text-muted-foreground",
+              summaryClassName,
+            )}
+          >
+            {summary}
+          </p>
         ) : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-3">{actions}</div> : null}
