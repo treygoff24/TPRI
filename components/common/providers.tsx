@@ -1,7 +1,6 @@
 "use client";
 
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "next-themes";
 import { useEffect } from "react";
 
@@ -30,7 +29,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ServiceWorkerRegistrar />
       {children}
       <Analytics />
-      <SpeedInsights />
     </ThemeProvider>
   );
 }
