@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint . --ext ts,tsx --max-warnings=0",
     "lint:content": "tsx scripts/validate-content.ts",
+    "lint:staged": "lint-staged",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "generate:og": "tsx scripts/generate-og.ts",
@@ -19,7 +20,8 @@
     "test:e2e": "playwright test",
     "test:a11y": "playwright test --config tests/playwright.a11y.config.ts",
     "test:lighthouse": "lhci autorun",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -61,7 +63,7 @@
     "@types/geojson": "^7946.0.16",
     "@types/js-yaml": "^4.0.9",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
@@ -71,6 +73,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-mdx": "^3.1.5",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "lint-staged": "^16.2.0",
     "next-sitemap": "^4.2.3",

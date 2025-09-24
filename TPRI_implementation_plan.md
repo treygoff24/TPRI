@@ -31,7 +31,7 @@
 
 1. Execute `npx create-next-app@latest . --typescript --eslint --tailwind --app --src-dir --import-alias "@/*" --use-npm --no-experimental-app`.
 2. Remove boilerplate files that will be replaced (`app/page.tsx`, default styles, sample API routes, favicon placeholders).
-3. Add `.nvmrc` with `18.19.0` and include `"engines": { "node": "18.x" }` in `package.json`.
+3. Add `.nvmrc` with `22.20.0` and include `"engines": { "node": "22.x" }` in `package.json`.
 4. Verify `package.json` scripts include `lint`, `build`, `start`; add empty placeholders for `test`, `test:e2e`, `test:a11y`, `test:lighthouse` (to be filled later).
 
 ---
@@ -50,7 +50,7 @@
    - Create `.prettierrc` (2 spaces, semicolons true, single quotes false) and `.prettierignore` covering build output.
 4. Git hooks:
    - Install `husky` and `lint-staged`.
-   - Configure pre-commit hook to run `npm run lint` and `npm run format:check` (alias for prettier check).
+   - Configure a pre-commit hook that runs `npm run lint:staged`.
 5. Environment variables:
    - Create `.env.example` listing `GA4_MEASUREMENT_ID`, `VERCEL_ANALYTICS_ID`, `CRM_WEBHOOK_URL`, `RESEND_API_KEY`, `CALENDLY_BOOKING_URL`, `NEXT_PUBLIC_SITE_URL`.
 
