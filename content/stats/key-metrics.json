@@ -1,0 +1,34 @@
+{
+  "opportunitySize": {
+    "id": "opportunity-size",
+    "label": "Private capital unlocked",
+    "value": 3000000000000,
+    "unit": "$",
+    "tooltip": "Estimated investment unlocked across allied Strategic Economic Zones",
+    "citationId": "ref-opportunity"
+  },
+  "annualMobilization": {
+    "id": "annual-mobilization",
+    "label": "Annual mobilization vs PRC",
+    "value": 92000000000,
+    "unit": "$",
+    "tooltip": "Modeled yearly deployment to match China's pace",
+    "citationId": "ref-bri"
+  },
+  "federalLeverage": {
+    "id": "federal-leverage",
+    "label": "Federal leverage ratio",
+    "value": 15,
+    "unit": "x",
+    "tooltip": "Private dollars mobilized per federal dollar backstop",
+    "citationId": "ref-leverage"
+  },
+  "geopoliticalCost": {
+    "id": "geopolitical-cost",
+    "label": "Monthly cost of inaction",
+    "value": 11400000000,
+    "unit": "$",
+    "tooltip": "Estimated PRC-aligned investment gained each month without TPRI",
+    "citationId": "ref-bri"
+  }
+}

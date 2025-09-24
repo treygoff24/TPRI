@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+coverage
+public/downloads
+public/images
+.vercel
+
+# Auto-generated assets
+**/*.generated.*
+

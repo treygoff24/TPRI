@@ -1,0 +1,64 @@
+{
+  "heroStats": [
+    {
+      "id": "opportunity",
+      "label": "$3T mobilized",
+      "value": 3000000000000,
+      "format": "currency",
+      "description": "Private investment catalyzed across allied markets when TPRI is enacted",
+      "citationId": "ref-opportunity"
+    },
+    {
+      "id": "mobilization",
+      "label": "$92B annually",
+      "value": 92000000000,
+      "format": "currency",
+      "description": "Modeled yearly capital deployment to counter PRC influence",
+      "citationId": "ref-bri"
+    },
+    {
+      "id": "leverage",
+      "label": "15× federal leverage",
+      "value": 15,
+      "format": "multiple",
+      "description": "Private dollars mobilized per federal credit dollar",
+      "citationId": "ref-leverage"
+    }
+  ],
+  "chinaExpansionStats": [
+    {
+      "id": "bri-investment",
+      "label": "$137B PRC investment since 2005",
+      "value": 137000000000,
+      "format": "currency",
+      "description": "State-directed capital deployed across the Western Hemisphere",
+      "citationId": "ref-bri"
+    },
+    {
+      "id": "recognition-switches",
+      "label": "9 allies flipped",
+      "value": 9,
+      "format": "number",
+      "description": "Countries that abandoned Taiwan recognition for Beijing since 2000",
+      "citationId": "ref-dominican"
+    }
+  ],
+  "caseStudyMetrics": [
+    {
+      "id": "prospera-jobs",
+      "label": "38,000 jobs projected",
+      "value": 38000,
+      "format": "number",
+      "description": "Employment supported in Próspera zones under TPRI coverage",
+      "citationId": "ref-prospera"
+    },
+    {
+      "id": "prospera-fdi",
+      "label": "$1.2B FDI unlocked",
+      "value": 1200000000,
+      "format": "currency",
+      "description": "Foreign direct investment catalyzed with TPRI safeguards",
+      "citationId": "ref-case-study"
+    }
+  ]
+}

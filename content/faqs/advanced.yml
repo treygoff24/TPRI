@@ -1,0 +1,44 @@
+- id: actuarial-model
+  audience: advanced
+  category: Finance
+  question: How is the actuarial model calibrated for systemic shocks?
+  answer: |
+    The reserve is sized using historical PRI loss data blended with geopolitical risk indices. Stress tests assume simultaneous multi-country disruptions and still keep the loss ratio below 0.75 with the Congressional credit line available for tail scenarios.
+  citationIds:
+    - ref-actuarial
+
+- id: dispute-resolution
+  audience: advanced
+  category: Legal
+  question: What dispute resolution framework applies to TPRI claims?
+  answer: |
+    Compacts designate International Centre for Settlement of Investment Disputes (ICSID) arbitration as the primary venue with expedited timelines. Awards are enforceable in U.S. courts under the FAA, and sovereign immunity waivers are embedded in accession agreements.
+  citationIds:
+    - ref-dispute
+
+- id: currency-risk
+  audience: advanced
+  category: Finance
+  question: How is currency inconvertibility treated within the policy?
+  answer: |
+    Claims activate when investors cannot repatriate funds within 30 days due to government-imposed controls. Payouts are denominated in USD at the pre-crisis exchange rate, and the facility can purchase FX hedges to protect the pool.
+  citationIds:
+    - ref-currency
+
+- id: reinsurer-role
+  audience: advanced
+  category: Operations
+  question: What is the role of reinsurance in TPRI?
+  answer: |
+    The facility purchases layered reinsurance from U.S. carriers to cap catastrophic losses. Reinsurers provide underwriting discipline and additional oversight on zone eligibility.
+  citationIds:
+    - ref-reinsurance
+
+- id: data-governance
+  audience: advanced
+  category: Data
+  question: How is sensitive investment data protected?
+  answer: |
+    Projects file encrypted disclosures into a FedRAMP Moderate system with strict role-based access. Aggregated analytics are shared publicly while sensitive data is compartmentalized for regulators and oversight committees.
+  citationIds:
+    - ref-data

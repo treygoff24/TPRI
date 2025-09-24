@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    min-height: 100vh;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 22px 42px -24px rgb(15 35 55 / 0.42);
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 1rem;
+  z-index: 50;
+  background: rgb(var(--color-primary));
+  color: rgb(var(--color-primary-foreground));
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  outline: 2px solid rgb(var(--color-ring));
+  outline-offset: 2px;
+}

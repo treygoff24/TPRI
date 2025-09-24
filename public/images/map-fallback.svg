@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Static map of Western Hemisphere">
+  <rect width="800" height="400" fill="#0f172a" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#f8fafc" font-size="24" font-family="Inter, sans-serif">
+    Map available with JavaScript enabled
+  </text>
+</svg>

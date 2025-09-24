@@ -1,0 +1,32 @@
+[
+  {
+    "id": "duration",
+    "label": "Policy duration",
+    "tpri": "25-99 years umbrella coverage tied to the zone charter",
+    "pri": "3-10 year project-specific policies"
+  },
+  {
+    "id": "scope",
+    "label": "Coverage scope",
+    "tpri": "Expropriation, creeping nationalization, currency controls, coerced regulation, armed non-state interference",
+    "pri": "Limited to expropriation and currency inconvertibility"
+  },
+  {
+    "id": "recovery",
+    "label": "Recovery enforcement",
+    "tpri": "Mandatory 3× recovery pursuit with FSIA carve-outs and asset attachment",
+    "pri": "Best-effort diplomatic renegotiation with no binding recovery"
+  },
+  {
+    "id": "eligibility",
+    "label": "Eligibility",
+    "tpri": "Certified Strategic Economic Zones meeting labor, environment, and national security benchmarks",
+    "pri": "Individual investors; opaque screening and case-by-case exceptions"
+  },
+  {
+    "id": "adversary",
+    "label": "Adversary exclusion",
+    "tpri": "Statutory ban on PRC- and adversary-controlled entities",
+    "pri": "No statutorily enforced adversary exclusions"
+  }
+]

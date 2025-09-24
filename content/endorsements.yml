@@ -1,0 +1,29 @@
+- id: america-first-hawks
+  name: Rep. Jane Whitaker
+  title: Chair, House Foreign Economic Affairs Subcommittee
+  organization: U.S. House of Representatives
+  quote: "TPRI is how we win without writing Beijing a check. It arms American investors with the certainty they need to lead."
+  logo: /images/case-studies/whitaker-signature.svg
+  url: https://example.org/testimonial1
+
+- id: national-security-forum
+  name: Admiral Luis Ortega (Ret.)
+  title: Former Commander, U.S. Southern Command
+  organization: National Security Forum
+  quote: "Every port or rail project Beijing finances has a dual-use clause. TPRI lets us counter with transparent, accountable capital."
+  logo: /images/case-studies/national-security-forum.svg
+  url: https://example.org/testimonial2
+
+- id: prosperity-alliance
+  name: Maria Sanchez
+  title: CEO, Prosperity Alliance of the Americas
+  organization: Prosperity Alliance
+  quote: "Our members are ready to deploy billions the moment Congress guarantees a fair playing field."
+  logo: /images/case-studies/prosperity-alliance.svg
+
+- id: labor-council
+  name: Aiden Brooks
+  title: President, Allied Labor Council
+  organization: Allied Labor Council
+  quote: "TPRI hardwires labor safeguards so workers see the benefits of new investment."
+  logo: /images/case-studies/allied-labor-council.svg

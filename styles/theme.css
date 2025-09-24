@@ -1,0 +1,66 @@
+:root {
+  color-scheme: light;
+  --color-background: 248 250 252;
+  --color-foreground: 16 26 41;
+  --color-primary: 178 30 46;
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 20 73 124;
+  --color-secondary-foreground: 239 244 249;
+  --color-accent: 239 178 66;
+  --color-accent-foreground: 32 27 15;
+  --color-muted: 226 232 240;
+  --color-muted-foreground: 88 103 125;
+  --color-border: 207 217 227;
+  --color-ring: 45 112 184;
+  --color-info: 32 102 196;
+  --color-success: 22 118 90;
+  --color-warning: 204 133 0;
+  --color-danger: 200 40 32;
+
+  --font-heading: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --space-gutter: clamp(1rem, 2vw + 0.75rem, 2rem);
+  --space-section: clamp(4rem, 8vw, 7rem);
+  --max-width-prose: 70ch;
+  --radius: 18px;
+}
+
+.dark {
+  color-scheme: dark;
+  --color-background: 10 15 24;
+  --color-foreground: 224 230 236;
+  --color-primary: 229 81 96;
+  --color-primary-foreground: 16 26 41;
+  --color-secondary: 97 150 205;
+  --color-secondary-foreground: 10 15 24;
+  --color-accent: 244 202 120;
+  --color-accent-foreground: 17 22 31;
+  --color-muted: 28 40 58;
+  --color-muted-foreground: 163 177 196;
+  --color-border: 46 62 87;
+  --color-ring: 108 168 239;
+  --color-info: 95 152 227;
+  --color-success: 62 188 154;
+  --color-warning: 241 180 58;
+  --color-danger: 235 106 98;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-ring) / 0.7);
+  outline-offset: 3px;
+}
+
+::-moz-selection {
+  background: rgba(var(--color-primary), 0.2);
+}
+
+::selection {
+  background: rgba(var(--color-primary), 0.2);
+}

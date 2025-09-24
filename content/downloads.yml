@@ -1,0 +1,42 @@
+- id: staff-backgrounder
+  title: Staff Backgrounder Kit
+  description: Two-page overview for congressional and committee staff summarizing the problem, solution, and legislative path.
+  file: /downloads/tpri-staff-backgrounder.pdf
+  audience: ["policymakers", "staff"]
+  tags: ["briefing", "policy"]
+  size: 2.1 MB
+  updated: 2024-10-01
+  offline: true
+  citationIds: ["ref-opportunity"]
+
+- id: legislative-outline
+  title: Legislative Outline
+  description: Section-by-section draft framework ready for markup with revenue, oversight, and enforcement provisions.
+  file: /downloads/tpri-legislative-outline.pdf
+  audience: ["legal", "committees"]
+  tags: ["legislation"]
+  size: 1.6 MB
+  updated: 2024-10-05
+  offline: true
+  citationIds: ["ref-constitution"]
+
+- id: coalition-playbook
+  title: Coalition Mobilization Playbook
+  description: Messaging guidance, stakeholder segmentation, and timeline for activating allied chambers of commerce.
+  file: /downloads/tpri-coalition-playbook.pdf
+  audience: ["coalition", "business"]
+  tags: ["coalition"]
+  size: 3.4 MB
+  updated: 2024-09-20
+  offline: true
+
+- id: investor-faq
+  title: Investor FAQ Packet
+  description: Deep-dive Q&A for investors evaluating projects inside Strategic Economic Zones.
+  file: /downloads/tpri-investor-faq.pdf
+  audience: ["investors"]
+  tags: ["investment"]
+  size: 1.9 MB
+  updated: 2024-09-15
+  offline: true
+  citationIds: ["ref-currency"]

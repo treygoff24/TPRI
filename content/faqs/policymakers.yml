@@ -1,0 +1,80 @@
+- id: fiscal-conservatives
+  audience: policymaker
+  category: Budget
+  question: How does TPRI avoid becoming corporate welfare?
+  answer: |
+    Private capital funds the program. Investors pay risk-based premiums into a pooled reserve and only receive coverage when expropriation or coercion occurs. Congress authorizes a backstop but can only deploy it after a bipartisan oversight notification, and any payout triggers immediate recovery proceedings against the offending actor.
+  citationIds:
+    - ref-fiscal
+
+- id: taxpayer-impact
+  audience: policymaker
+  category: Budget
+  question: What is the federal budget impact?
+  answer: |
+    The facility is self-financed. Congressional Budget Office modeling shows outlays are offset by premium income and recoveries. Even in a stress scenario, the authorized credit line is repaid from recoveries and subrogation claims, keeping taxpayers whole.
+  citationIds:
+    - ref-budget
+
+- id: conservative-support
+  audience: policymaker
+  category: Coalition
+  question: Why should fiscal conservatives support this proposal?
+  answer: |
+    TPRI mobilizes private capital instead of new foreign aid. By guaranteeing freedom-aligned investment, it shrinks the need for costly military or humanitarian interventions triggered by authoritarian debt traps.
+  citationIds:
+    - ref-conservative
+
+- id: oversight
+  audience: policymaker
+  category: Oversight
+  question: How does Congressional oversight work?
+  answer: |
+    Quarterly reports go to the relevant committees with project-level transparency. Any claim above $50 million requires a closed briefing within ten days, and GAO retains audit authority.
+  citationIds:
+    - ref-oversight
+
+- id: sovereignty
+  audience: policymaker
+  category: Sovereignty
+  question: Does this undermine host nation sovereignty?
+  answer: |
+    No. Zones join voluntarily and co-author the governance charter. Each compact preserves host nation tax authority, labor rights, and environmental standards while shielding investors from arbitrary retaliation.
+  citationIds:
+    - ref-sovereignty
+
+- id: china-benefit
+  audience: policymaker
+  category: Security
+  question: What prevents China-aligned companies from benefiting?
+  answer: |
+    Statute blocks entities owned or controlled by adversarial governments from coverage. Beneficial ownership disclosures and CFIUS-style review ensure the benefits accrue to allied companies.
+  citationIds:
+    - ref-adversary
+
+- id: implementation-speed
+  audience: policymaker
+  category: Implementation
+  question: How quickly can TPRI go live after passage?
+  answer: |
+    DFC can stand up the facility within six months using existing staffing plus a surge team funded by start-up appropriations. Early adopter zones in Honduras, Paraguay, and the Caribbean can certify during that window.
+  citationIds:
+    - ref-implementation
+
+- id: labor-environment
+  audience: policymaker
+  category: Standards
+  question: What are the labor and environmental safeguards?
+  answer: |
+    Zones must demonstrate compliance with ILO core standards, surprise third-party audits, and transparent environmental impact assessments. Violations trigger remediation plans and can suspend coverage.
+  citationIds:
+    - ref-standards
+
+- id: constitution
+  audience: policymaker
+  category: Legal
+  question: Why is this constitutional?
+  answer: |
+    Congress routinely authorizes risk insurance programs (OPIC/DFC) and can condition coverage on contractual obligations. Recovery actions operate through Article III courts with full due process.
+  citationIds:
+    - ref-constitution

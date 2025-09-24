@@ -1,0 +1,34 @@
+[
+  {
+    "isoCode": "PY",
+    "country": "Paraguay",
+    "status": "recognizes-taiwan",
+    "changeDate": "2023-05-01",
+    "citationId": "ref-paraguay"
+  },
+  {
+    "isoCode": "HN",
+    "country": "Honduras",
+    "status": "recognizes-china",
+    "changeDate": "2023-03-26",
+    "citationId": "ref-honduras"
+  },
+  {
+    "isoCode": "DO",
+    "country": "Dominican Republic",
+    "status": "recognizes-china",
+    "changeDate": "2018-05-01",
+    "citationId": "ref-dominican"
+  },
+  {
+    "isoCode": "EC",
+    "country": "Ecuador",
+    "status": "recognizes-china",
+    "citationId": "ref-ecuador"
+  },
+  {
+    "isoCode": "TW",
+    "country": "Taiwan",
+    "status": "recognizes-taiwan"
+  }
+]
