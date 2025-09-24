@@ -16,8 +16,7 @@ export type SimpleMetric = {
 };
 
 function convertToStat(metric: SimpleMetric): Stat {
-  const unit =
-    metric.format === "currency" ? "$" : metric.format === "multiple" ? "x" : "raw";
+  const unit = metric.format === "currency" ? "$" : metric.format === "multiple" ? "x" : "raw";
   return {
     id: metric.id,
     label: metric.label,
@@ -52,7 +51,7 @@ export function ChinaExpansionSection({
     <SectionWrapper id={section.meta.id} background={section.meta.background}>
       <div className="flex flex-col gap-y-12">
         <SectionHeader title={section.meta.title} summary={section.meta.summary} align="left" />
-        <div className="prose max-w-prose text-base text-muted-foreground">
+        <div className="prose prose-invert max-w-prose text-base leading-relaxed text-foreground/80 prose-strong:text-accent prose-p:text-foreground/85 prose-li:text-foreground/80 marker:text-accent">
           <SectionContent />
         </div>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">

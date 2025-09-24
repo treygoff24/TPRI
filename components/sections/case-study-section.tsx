@@ -1,8 +1,7 @@
-import { EndorsementWall } from "@/components/common/endorsement-wall";
 import { SectionHeader } from "@/components/common/section-header";
 import { SectionWrapper } from "@/components/common/section-wrapper";
 import { StatCard } from "@/components/common/stat-card";
-import type { Endorsement, Stat } from "@/content/schema";
+import type { Stat } from "@/content/schema";
 import type { CompiledSection } from "@/lib/content";
 
 export type CaseMetric = {
@@ -23,33 +22,12 @@ function toStat(metric: CaseMetric): Stat {
   };
 }
 
-const BEFORE_AFTER = [
-  {
-    title: "Without TPRI",
-    points: [
-      "Investors face sudden permit reversals and expropriation risk",
-      "Capital pauses after each political transition",
-      "Host community sees limited job creation and weak spillovers",
-    ],
-  },
-  {
-    title: "With TPRI",
-    points: [
-      "Coverage triggers immediate compensation and recovery enforcement",
-      "Investors commit to 25+ year projects with stable financing",
-      "Local workforce gains permanent jobs with shared revenue streams",
-    ],
-  },
-];
-
 export function CaseStudySection({
   section,
   metrics,
-  endorsements,
 }: {
   section: CompiledSection;
   metrics: CaseMetric[];
-  endorsements: Endorsement[];
 }) {
   const SectionContent = section.Content;
 
@@ -85,7 +63,6 @@ export function CaseStudySection({
             </div>
           ))}
         </div>
-        <EndorsementWall endorsements={endorsements} />
       </div>
     </SectionWrapper>
   );
