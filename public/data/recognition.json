@@ -1,0 +1,283 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-09-24",
+  "sourceIndex": "citations.json",
+  "entries": [
+    {
+      "isoAlpha3": "CAN",
+      "name": "Canada",
+      "recognition": "china",
+      "since": "1970-10-13",
+      "sinceYear": 1970,
+      "lastChangeEvent": "established-relations-with-prc",
+      "citationIds": ["can-1970-gac", "prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "USA",
+      "name": "United States",
+      "recognition": "china",
+      "since": "1979-01-01",
+      "sinceYear": 1979,
+      "lastChangeEvent": "established-relations-with-prc",
+      "citationIds": ["usa-1979-frus", "prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "MEX",
+      "name": "Mexico",
+      "recognition": "china",
+      "sinceYear": 1972,
+      "citationIds": ["mex-1972-fmprc", "prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "BLZ",
+      "name": "Belize",
+      "recognition": "taiwan",
+      "since": "1989-10-11",
+      "sinceYear": 1989,
+      "lastChangeEvent": "established-ties-with-roc",
+      "citationIds": ["tw-mofa-allies", "blz-1989-emb"]
+    },
+    {
+      "isoAlpha3": "GTM",
+      "name": "Guatemala",
+      "recognition": "taiwan",
+      "sinceYear": 1933,
+      "lastChangeEvent": "maintains-ties-with-roc",
+      "notes": "Some sources cite 1933/1934; official statements reference >90 years of ties.",
+      "citationIds": ["tw-mofa-allies", "gtm-allies-pres"]
+    },
+    {
+      "isoAlpha3": "HND",
+      "name": "Honduras",
+      "recognition": "china",
+      "since": "2023-03-26",
+      "sinceYear": 2023,
+      "lastChangeEvent": "switched-to-prc",
+      "citationIds": ["hon-2023-fmprc", "hon-2023-guardian"]
+    },
+    {
+      "isoAlpha3": "SLV",
+      "name": "El Salvador",
+      "recognition": "china",
+      "since": "2018-08-21",
+      "sinceYear": 2018,
+      "lastChangeEvent": "switched-to-prc",
+      "citationIds": ["slv-2018-fmprc"]
+    },
+    {
+      "isoAlpha3": "NIC",
+      "name": "Nicaragua",
+      "recognition": "china",
+      "since": "2021-12-10",
+      "sinceYear": 2021,
+      "lastChangeEvent": "restored-ties-with-prc",
+      "citationIds": ["nic-2021-reuters"]
+    },
+    {
+      "isoAlpha3": "CRI",
+      "name": "Costa Rica",
+      "recognition": "china",
+      "since": "2007-06-01",
+      "sinceYear": 2007,
+      "lastChangeEvent": "switched-to-prc",
+      "citationIds": ["cri-2007-fmprc"]
+    },
+    {
+      "isoAlpha3": "PAN",
+      "name": "Panama",
+      "recognition": "china",
+      "since": "2017-06-13",
+      "sinceYear": 2017,
+      "lastChangeEvent": "switched-to-prc",
+      "citationIds": ["pan-2017-bbc"]
+    },
+    {
+      "isoAlpha3": "CUB",
+      "name": "Cuba",
+      "recognition": "china",
+      "since": "1960-09-28",
+      "sinceYear": 1960,
+      "citationIds": ["cub-1960-fmprc"]
+    },
+    {
+      "isoAlpha3": "JAM",
+      "name": "Jamaica",
+      "recognition": "china",
+      "since": "1972-11-21",
+      "sinceYear": 1972,
+      "citationIds": ["jam-1972-emb", "prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "HTI",
+      "name": "Haiti",
+      "recognition": "taiwan",
+      "since": "1956-04-25",
+      "sinceYear": 1956,
+      "citationIds": ["tw-mofa-allies", "hti-1956-mofa"]
+    },
+    {
+      "isoAlpha3": "DOM",
+      "name": "Dominican Republic",
+      "recognition": "china",
+      "since": "2018-05-01",
+      "sinceYear": 2018,
+      "citationIds": ["domrep-2018-reuters"]
+    },
+    {
+      "isoAlpha3": "BHS",
+      "name": "Bahamas",
+      "recognition": "china",
+      "since": "1997-05-23",
+      "sinceYear": 1997,
+      "citationIds": ["bah-1997-fmprc"]
+    },
+    {
+      "isoAlpha3": "BRB",
+      "name": "Barbados",
+      "recognition": "china",
+      "since": "1977-05-30",
+      "sinceYear": 1977,
+      "citationIds": ["brb-1977-govbb"]
+    },
+    {
+      "isoAlpha3": "TTO",
+      "name": "Trinidad and Tobago",
+      "recognition": "china",
+      "since": "1974-06-20",
+      "sinceYear": 1974,
+      "citationIds": ["tto-1974-fmprc"]
+    },
+    {
+      "isoAlpha3": "KNA",
+      "name": "Saint Kitts and Nevis",
+      "recognition": "taiwan",
+      "sinceYear": 1983,
+      "citationIds": ["tw-mofa-allies", "kna-1983-teco"]
+    },
+    {
+      "isoAlpha3": "ATG",
+      "name": "Antigua and Barbuda",
+      "recognition": "china",
+      "since": "1983-01-01",
+      "sinceYear": 1983,
+      "citationIds": ["atg-1983-fmprc"]
+    },
+    {
+      "isoAlpha3": "DMA",
+      "name": "Dominica",
+      "recognition": "china",
+      "since": "2004-03-23",
+      "sinceYear": 2004,
+      "citationIds": ["dma-2004-fmprc"]
+    },
+    {
+      "isoAlpha3": "LCA",
+      "name": "Saint Lucia",
+      "recognition": "taiwan",
+      "since": "2007-04-30",
+      "sinceYear": 2007,
+      "lastChangeEvent": "restored-ties-with-roc",
+      "citationIds": ["tw-mofa-allies", "lca-2007-pres"]
+    },
+    {
+      "isoAlpha3": "VCT",
+      "name": "Saint Vincent and the Grenadines",
+      "recognition": "taiwan",
+      "since": "1981-08-15",
+      "sinceYear": 1981,
+      "citationIds": ["tw-mofa-allies", "svg-1981-mofa"]
+    },
+    {
+      "isoAlpha3": "GRD",
+      "name": "Grenada",
+      "recognition": "china",
+      "since": "2005-01-20",
+      "sinceYear": 2005,
+      "citationIds": ["grd-2005-fmprc"]
+    },
+    {
+      "isoAlpha3": "ARG",
+      "name": "Argentina",
+      "recognition": "china",
+      "sinceYear": 1972,
+      "citationIds": ["arg-1972-fmprc", "prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "BOL",
+      "name": "Bolivia",
+      "recognition": "china",
+      "sinceYear": 1985,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "BRA",
+      "name": "Brazil",
+      "recognition": "china",
+      "sinceYear": 1974,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "CHL",
+      "name": "Chile",
+      "recognition": "china",
+      "sinceYear": 1970,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "COL",
+      "name": "Colombia",
+      "recognition": "china",
+      "sinceYear": 1980,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "ECU",
+      "name": "Ecuador",
+      "recognition": "china",
+      "sinceYear": 1980,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "GUY",
+      "name": "Guyana",
+      "recognition": "china",
+      "sinceYear": 1972,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "PRY",
+      "name": "Paraguay",
+      "recognition": "taiwan",
+      "sinceYear": 1957,
+      "citationIds": ["tw-mofa-allies", "pry-1957-cna"]
+    },
+    {
+      "isoAlpha3": "PER",
+      "name": "Peru",
+      "recognition": "china",
+      "sinceYear": 1971,
+      "citationIds": ["per-1971-fmprc", "prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "SUR",
+      "name": "Suriname",
+      "recognition": "china",
+      "sinceYear": 1976,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "URY",
+      "name": "Uruguay",
+      "recognition": "china",
+      "sinceYear": 1988,
+      "citationIds": ["prc-estab-dates-wiki"]
+    },
+    {
+      "isoAlpha3": "VEN",
+      "name": "Venezuela",
+      "recognition": "china",
+      "sinceYear": 1974,
+      "citationIds": ["prc-estab-dates-wiki"]
+    }
+  ]
+}

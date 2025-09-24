@@ -21,7 +21,8 @@ Keep contributions focused: aim for deliberate changes, document them clearly, a
 
 ### Agent Workflow Requirements
 
-- After **every** code or content change, run `npm run lint` followed by `npm run build` before responding to the user.
+- After **any code change**, run `npm run lint` followed by `npm run build` before responding to the user.
+- Documentation-only updates or writing new docs do **not** require lint/build; resume running both commands once code is modified again.
 - If lint or build fails, fix the issue and rerun the failed command(s) until both complete successfully; only then report back to the user.
 
 ## Coding Style & Naming Conventions

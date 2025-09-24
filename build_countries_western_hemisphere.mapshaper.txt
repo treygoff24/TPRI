@@ -1,0 +1,7 @@
+# Build countries-western-hemisphere.geo.json from Natural Earth (1:50m) admin-0
+# Prereqs: mapshaper installed (`npm i -g mapshaper`), NE dataset downloaded & unzipped.
+# Download: https://www.naturalearthdata.com/downloads/50m-cultural-vectors/ (ne_50m_admin_0_countries.zip)
+#
+# This recipe keeps only sovereign states, clips to the Western Hemisphere, simplifies, and exports.
+
+mapshaper       ne_50m_admin_0_countries.shp       -filter 'TYPE == "Sovereign country"'       -proj wgs84       -clip bbox=-170,-60,-20,85       -filter 'ADM0_A3 != "ATA"'       -clean-layers       -dissolve2 target=ADM0_A3       -each 'iso_a3=ADM0_A3, name=NAME_LONG'       -rename-layers countries       -simplify 15% preserve-shapes       -o format=geojson precision=0.000001 countries-western-hemisphere.geo.json       -o format=topojson precision=0.000001 countries-western-hemisphere.topo.json
