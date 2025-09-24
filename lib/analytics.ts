@@ -43,6 +43,12 @@ declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
     gtag?: (...args: unknown[]) => void;
+    doNotTrack?: string | null;
+  }
+
+  interface Navigator {
+    doNotTrack?: string | null;
+    globalPrivacyControl?: boolean;
   }
 }
 
