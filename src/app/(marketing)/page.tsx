@@ -17,6 +17,9 @@ import { ContactSection } from "@/components/sections/contact-section";
 import { loadAllContent } from "@/lib/content";
 import { loadMapData } from "@/lib/map-data";
 
+export const experimental_ppr = false;
+export const dynamic = "force-dynamic";
+
 export default async function MarketingPage() {
   const { sections, howItWorks, faqs, downloads, endorsements, metrics, timeline } =
     await loadAllContent();
@@ -78,9 +81,7 @@ export default async function MarketingPage() {
           {downloadsSection ? (
             <DownloadsSection section={downloadsSection} downloads={downloads} />
           ) : null}
-          {contact ? (
-            <ContactSection meta={contact.meta} content={<contact.Content />} />
-          ) : null}
+          {contact ? <ContactSection meta={contact.meta} content={<contact.Content />} /> : null}
         </div>
         <MiniToc />
       </div>
