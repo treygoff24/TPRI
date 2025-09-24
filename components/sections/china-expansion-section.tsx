@@ -11,12 +11,13 @@ type SimpleMetric = {
   id: string;
   label: string;
   value: number;
-  format: "currency" | "number";
+  format: "currency" | "number" | "multiple";
   citationId?: string;
 };
 
 function convertToStat(metric: SimpleMetric): Stat {
-  const unit = metric.format === "currency" ? "$" : "raw";
+  const unit =
+    metric.format === "currency" ? "$" : metric.format === "multiple" ? "x" : "raw";
   return {
     id: metric.id,
     label: metric.label,
