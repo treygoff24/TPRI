@@ -9,6 +9,8 @@ import { coalitionFormSchema, type CoalitionFormData } from "@/lib/forms";
 
 type CoalitionFormStep = 1 | 2;
 
+const clampStep = (value: number): CoalitionFormStep => (value <= 1 ? 1 : 2);
+
 export function CoalitionForm() {
   const [step, setStep] = useState<CoalitionFormStep>(1);
   const [status, setStatus] = useState<"idle" | "success" | "error" | "submitting">("idle");
@@ -21,8 +23,8 @@ export function CoalitionForm() {
     },
   });
 
-  const nextStep = () => setStep((prev) => Math.min(2, (prev + 1) as CoalitionFormStep));
-  const prevStep = () => setStep((prev) => Math.max(1, (prev - 1) as CoalitionFormStep));
+  const nextStep = () => setStep((prev) => clampStep(prev + 1));
+  const prevStep = () => setStep((prev) => clampStep(prev - 1));
 
   const onSubmit = async (data: CoalitionFormData) => {
     setStatus("submitting");
