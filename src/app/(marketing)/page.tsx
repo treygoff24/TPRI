@@ -13,7 +13,7 @@ import { FAQSection } from "@/components/sections/faq-section";
 import { DownloadsSection } from "@/components/sections/downloads-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { loadAllContent } from "@/lib/content";
-import { loadMapData } from "@/lib/map";
+import { loadMapData } from "@/lib/map-data";
 
 export default async function MarketingPage() {
   const { sections, howItWorks, faqs, downloads, endorsements, metrics, timeline } =
