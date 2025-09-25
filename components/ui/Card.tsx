@@ -14,7 +14,7 @@ export function Card({ children, className, emphasis = false, hover = false }: C
     <div
       className={cn(
         "rounded-xl border border-border",
-        emphasis ? "bg-white shadow-lg p-8" : "bg-surface p-6",
+        emphasis ? "bg-background shadow-lg p-8 dark:bg-surface" : "bg-surface p-6",
         hover && "hover:shadow-md hover:border-primary/20 transition-shadow",
         className,
       )}
