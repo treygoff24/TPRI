@@ -20,7 +20,7 @@ export const OG_SECTIONS: OgSection[] = [
   },
   {
     id: "solution",
-    title: "Our Solution",
+    title: "Our Solution: Insurance That Works",
     summary:
       "Political risk insurance, certified zones, and triple-damages recovery unlock private capital.",
   },

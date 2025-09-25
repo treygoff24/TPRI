@@ -5,7 +5,9 @@ export function SolutionSection() {
   return (
     <Section id="solution">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-serif font-bold text-text-primary mb-4">How TPRI Works</h2>
+        <h2 className="text-4xl font-serif font-bold text-text-primary mb-4">
+          Our Solution: Insurance That Works
+        </h2>
         <p className="text-xl text-text-secondary max-w-2xl mx-auto">
           Three components that work together to mobilize private capital at scale.
         </p>

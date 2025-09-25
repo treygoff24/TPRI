@@ -25,8 +25,8 @@ export function Button({
 
   const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
     primary: "bg-primary text-white hover:bg-primary-dark",
-    secondary: "border border-primary text-primary hover:bg-primary-light",
-    ghost: "text-text-secondary hover:text-text-primary hover:bg-surface",
+    secondary: "border-2 border-primary text-primary hover:bg-primary-light",
+    ghost: "text-text-secondary hover:text-primary hover:bg-surface",
   };
 
   const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
