@@ -11,6 +11,7 @@ import {
   endorsementSchema,
   faqSchema,
   keyMetricsSchema,
+  recognitionDatasetSchema,
   recognitionSchema,
   sectionFrontmatterSchema,
   timelineEventSchema,
@@ -145,14 +146,12 @@ async function validateDataAssets(rootDir: string) {
     }
   }
 
-  const recognitionFile = path.join(rootDir, "data/map/recognition.json");
+  const recognitionFile = path.join(rootDir, "public/data/recognition.json");
   try {
     const raw = await readFile(recognitionFile, "utf-8");
     const json = JSON.parse(raw);
-    if (!Array.isArray(json)) {
-      throw new Error("Recognition data must be an array.");
-    }
-    json.forEach((item, index) => {
+    const dataset = recognitionDatasetSchema.parse(json);
+    dataset.entries.forEach((item, index) => {
       try {
         recognitionSchema.parse(item);
       } catch (error) {
@@ -163,7 +162,7 @@ async function validateDataAssets(rootDir: string) {
         );
       }
     });
-    logSuccess("Validated recognition dataset.");
+    logSuccess(`Validated recognition dataset with ${dataset.entries.length} entries.`);
   } catch (error) {
     logError("Unable to parse recognition data.");
     if (error instanceof Error) {
@@ -198,8 +197,9 @@ async function main() {
         return JSON.parse(raw);
       })(),
       recognition: await (async () => {
-        const raw = await readFile(path.join(rootDir, "data/map/recognition.json"), "utf-8");
-        return JSON.parse(raw);
+        const raw = await readFile(path.join(rootDir, "public/data/recognition.json"), "utf-8");
+        const json = JSON.parse(raw);
+        return recognitionDatasetSchema.parse(json);
       })(),
     };
     contentBundleSchema.parse(bundle);

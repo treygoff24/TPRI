@@ -18,7 +18,7 @@
    ```bash
    mkdir -p docs \
      content/{sections,faqs,downloads,stats} \
-     data/map \
+     public/data \
      public/{downloads,images/{hero,case-studies,og},icons} \
      components/{common,sections,ui} \
      lib scripts styles tests/{e2e,fixtures,utils}
@@ -72,8 +72,8 @@
 
 1. Build `data/timeline.json` describing chronological events (fields: `date`, `title`, `summary`, `impact`, `sourceUrl`).
 2. Populate map data:
-   - `data/map/countries.geo.json` – simplified GeoJSON of relevant countries.
-   - `data/map/recognition.json` – object with ISO country code, recognition status, change date, citation.
+   - `public/data/countries-western-hemisphere.geo.json` – simplified GeoJSON of relevant countries.
+   - `public/data/recognition.json` – canonical recognition dataset (metadata, citations, change history).
 3. Create `data/metrics.json` for top-level stats (opportunity size, investment deltas, etc.).
 4. Maintain `docs/references.md` with citations used across stats, timeline, and narrative sections.
 

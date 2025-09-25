@@ -79,11 +79,21 @@ export const timelineEventSchema = z.object({
 });
 
 export const recognitionSchema = z.object({
-  isoCode: z.string().length(2),
-  country: z.string(),
-  status: z.enum(["recognizes-taiwan", "recognizes-china"]),
-  changeDate: z.coerce.date().optional(),
-  citationId: z.string().optional(),
+  isoAlpha3: z.string().length(3),
+  name: z.string(),
+  recognition: z.enum(["china", "taiwan"]),
+  since: z.string().optional(),
+  sinceYear: z.number().optional(),
+  lastChangeEvent: z.string().optional(),
+  notes: z.string().optional(),
+  citationIds: z.array(z.string()).min(1),
+});
+
+export const recognitionDatasetSchema = z.object({
+  version: z.string(),
+  updated: z.string(),
+  sourceIndex: z.string(),
+  entries: z.array(recognitionSchema),
 });
 
 export const contentBundleSchema = z.object({
@@ -93,7 +103,7 @@ export const contentBundleSchema = z.object({
   endorsements: z.array(endorsementSchema),
   stats: keyMetricsSchema,
   timeline: z.array(timelineEventSchema),
-  recognition: z.array(recognitionSchema),
+  recognition: recognitionDatasetSchema,
 });
 
 export type CTA = z.infer<typeof ctaSchema>;
@@ -105,3 +115,4 @@ export type Endorsement = z.infer<typeof endorsementSchema>;
 export type KeyMetrics = z.infer<typeof keyMetricsSchema>;
 export type TimelineEvent = z.infer<typeof timelineEventSchema>;
 export type RecognitionRecord = z.infer<typeof recognitionSchema>;
+export type RecognitionDataset = z.infer<typeof recognitionDatasetSchema>;
