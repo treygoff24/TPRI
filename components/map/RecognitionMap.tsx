@@ -12,7 +12,7 @@ import maplibregl, {
   type StyleSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { centroid } from "@turf/turf";
+import { bbox, centroid } from "@turf/turf";
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
 
 import type {
@@ -33,7 +33,8 @@ import { Tooltip, type TooltipData } from "./Tooltip";
 
 const COUNTRIES_SOURCE_ID = "countries";
 const FILL_LAYER_ID = "countries-fill";
-const USA_PATTERN_LAYER_ID = "countries-usa-pattern";
+const USA_CANVAS_SOURCE_ID = "countries-usa-flag-source";
+const USA_CANVAS_LAYER_ID = "countries-usa-flag";
 const OUTLINE_LAYER_ID = "countries-outline";
 const HIGHLIGHT_LAYER_ID = "countries-highlight";
 
@@ -44,7 +45,6 @@ const DEFAULT_BOUNDS: maplibregl.LngLatBoundsLike = [
   [-20, 85],
 ];
 const USA_CODE = "USA";
-const USA_PATTERN_IMAGE_ID = "usa-flag-pattern";
 
 function createBaseStyle(tokens: StyleTokens["colors"]): StyleSpecification {
   return {
@@ -61,18 +61,10 @@ function createBaseStyle(tokens: StyleTokens["colors"]): StyleSpecification {
     ],
   } satisfies StyleSpecification;
 }
+type Bounds = [number, number, number, number];
+type QuadCoordinates = [[number, number], [number, number], [number, number], [number, number]];
 
-async function createUsaFlagPattern(): Promise<ImageBitmap> {
-  const width = 96;
-  const height = 48;
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    throw new Error("Unable to obtain 2D context for flag pattern");
-  }
-
+function drawFlagBackground(ctx: CanvasRenderingContext2D, width: number, height: number) {
   const stripeHeight = height / 13;
 
   ctx.fillStyle = "#FFFFFF";
@@ -89,21 +81,100 @@ async function createUsaFlagPattern(): Promise<ImageBitmap> {
   ctx.fillRect(0, 0, cantonWidth, cantonHeight);
 
   ctx.fillStyle = "#FFFFFF";
-  const rows = 4;
-  const cols = 5;
-  const starRadius = Math.min(stripeHeight, cantonWidth / cols) * 0.12;
-
+  const rows = 9;
+  const columnsForRow = (row: number) => (row % 2 === 0 ? 6 : 5);
+  const starRadius = Math.min(stripeHeight, cantonWidth / 6) * 0.12;
   for (let row = 0; row < rows; row++) {
+    const columns = columnsForRow(row);
     const y = stripeHeight / 2 + (row * cantonHeight) / rows;
-    for (let col = 0; col < cols; col++) {
-      const x = (cantonWidth / (cols + 1)) * (col + 1);
+    for (let col = 0; col < columns; col++) {
+      const offset = columns % 2 === 0 ? 0.5 : 1;
+      const x = (cantonWidth / (columns + offset)) * (col + offset / 2);
       ctx.beginPath();
       ctx.arc(x, y, starRadius, 0, Math.PI * 2);
       ctx.fill();
     }
   }
+}
 
-  return createImageBitmap(canvas);
+function projectPoint(
+  lon: number,
+  lat: number,
+  bounds: Bounds,
+  width: number,
+  height: number,
+): [number, number] {
+  const [minLon, minLat, maxLon, maxLat] = bounds;
+  const lonRange = maxLon - minLon || 1;
+  const latRange = maxLat - minLat || 1;
+  const x = ((lon - minLon) / lonRange) * width;
+  const y = ((maxLat - lat) / latRange) * height;
+  return [x, y];
+}
+
+function maskCanvasWithGeometry(
+  ctx: CanvasRenderingContext2D,
+  geometry: Polygon | MultiPolygon,
+  bounds: Bounds,
+  width: number,
+  height: number,
+) {
+  ctx.save();
+  ctx.globalCompositeOperation = "destination-in";
+  ctx.beginPath();
+
+  const drawPolygon = (polygon: number[][][]) => {
+    polygon.forEach((ring) => {
+      ring.forEach(([lon, lat], index) => {
+        const [x, y] = projectPoint(lon, lat, bounds, width, height);
+        if (index === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+      ctx.closePath();
+    });
+  };
+
+  if (geometry.type === "Polygon") {
+    drawPolygon(geometry.coordinates);
+  } else {
+    geometry.coordinates.forEach((polygon) => drawPolygon(polygon));
+  }
+
+  ctx.fill("evenodd");
+  ctx.restore();
+}
+
+function renderUsaFlagCanvas(feature: Feature<Polygon | MultiPolygon>): {
+  canvas: HTMLCanvasElement;
+  coordinates: QuadCoordinates;
+} {
+  const flagBounds = bbox(feature) as Bounds;
+  const [minLon, minLat, maxLon, maxLat] = flagBounds;
+  const width = 1024;
+  const aspectRatio = (maxLat - minLat) / Math.max(maxLon - minLon, 1e-6);
+  const height = Math.max(512, Math.round(width * aspectRatio));
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    throw new Error("Unable to obtain 2D context for flag canvas");
+  }
+
+  drawFlagBackground(ctx, width, height);
+  maskCanvasWithGeometry(ctx, feature.geometry, flagBounds, width, height);
+
+  const coordinates: QuadCoordinates = [
+    [minLon, maxLat],
+    [maxLon, maxLat],
+    [maxLon, minLat],
+    [minLon, minLat],
+  ];
+
+  return { canvas, coordinates };
 }
 
 export type RecognitionMapProps = {
@@ -343,15 +414,6 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             promoteId: "iso_a3",
           });
 
-          if (!loadedMap.hasImage(USA_PATTERN_IMAGE_ID)) {
-            try {
-              const pattern = await createUsaFlagPattern();
-              loadedMap.addImage(USA_PATTERN_IMAGE_ID, pattern, { pixelRatio: 2, sdf: false });
-            } catch (flagError) {
-              console.error(flagError);
-            }
-          }
-
           loadedMap.addLayer({
             id: FILL_LAYER_ID,
             type: "fill",
@@ -361,19 +423,6 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
               "fill-opacity": ["case", ["boolean", ["feature-state", "hover"], false], 1, 0.9],
             },
           });
-
-          if (loadedMap.hasImage(USA_PATTERN_IMAGE_ID)) {
-            loadedMap.addLayer({
-              id: USA_PATTERN_LAYER_ID,
-              type: "fill",
-              source: COUNTRIES_SOURCE_ID,
-              filter: ["==", ["get", "iso_a3"], USA_CODE],
-              paint: {
-                "fill-pattern": USA_PATTERN_IMAGE_ID,
-                "fill-opacity": 1,
-              },
-            });
-          }
 
           loadedMap.addLayer({
             id: OUTLINE_LAYER_ID,
@@ -395,6 +444,35 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             },
             filter: ["==", ["get", "iso_a3"], ""],
           });
+
+          const usaFeature = featureCollection.features.find(
+            (feature) => (feature.properties?.iso_a3 ?? feature.id) === USA_CODE,
+          ) as Feature<Polygon | MultiPolygon> | undefined;
+
+          if (usaFeature) {
+            try {
+              const { canvas: flagCanvas, coordinates } = renderUsaFlagCanvas(usaFeature);
+              loadedMap.addSource(USA_CANVAS_SOURCE_ID, {
+                type: "canvas",
+                canvas: flagCanvas,
+                coordinates,
+                animate: false,
+              });
+              loadedMap.addLayer(
+                {
+                  id: USA_CANVAS_LAYER_ID,
+                  type: "raster",
+                  source: USA_CANVAS_SOURCE_ID,
+                  paint: {
+                    "raster-opacity": 1,
+                  },
+                },
+                OUTLINE_LAYER_ID,
+              );
+            } catch (flagError) {
+              console.error(flagError);
+            }
+          }
 
           const handleMouseMove = (event: MapLayerMouseEvent) => {
             const feature = event.features?.[0] as MapGeoJSONFeature | undefined;
@@ -458,9 +536,6 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
           };
 
           const interactiveLayers = [FILL_LAYER_ID];
-          if (loadedMap.getLayer(USA_PATTERN_LAYER_ID)) {
-            interactiveLayers.push(USA_PATTERN_LAYER_ID);
-          }
 
           interactiveLayers.forEach((layerId) => {
             loadedMap.on("mousemove", layerId, handleMouseMove);
@@ -513,21 +588,17 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
     if (activeKinds.length === 2) {
       map.setFilter(FILL_LAYER_ID, undefined);
       map.setFilter(OUTLINE_LAYER_ID, undefined);
-      if (map.getLayer(USA_PATTERN_LAYER_ID)) {
-        map.setFilter(USA_PATTERN_LAYER_ID, ["==", ["get", "iso_a3"], USA_CODE]);
+      if (map.getLayer(USA_CANVAS_LAYER_ID)) {
+        map.setLayoutProperty(USA_CANVAS_LAYER_ID, "visibility", "visible");
       }
     } else {
       const isoList = activeKinds.flatMap((kind) => isoLookup[kind]);
       const baseFilter: FilterSpecification = ["in", ["get", "iso_a3"], ["literal", isoList]];
       map.setFilter(FILL_LAYER_ID, baseFilter);
       map.setFilter(OUTLINE_LAYER_ID, baseFilter);
-      if (map.getLayer(USA_PATTERN_LAYER_ID)) {
-        const usaFilter: FilterSpecification = [
-          "all",
-          ["==", ["get", "iso_a3"], USA_CODE],
-          ["in", ["get", "iso_a3"], ["literal", isoList]],
-        ];
-        map.setFilter(USA_PATTERN_LAYER_ID, usaFilter);
+      if (map.getLayer(USA_CANVAS_LAYER_ID)) {
+        const usaVisible = isoList.includes(USA_CODE) ? "visible" : "none";
+        map.setLayoutProperty(USA_CANVAS_LAYER_ID, "visibility", usaVisible);
       }
     }
 
