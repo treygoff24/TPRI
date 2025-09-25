@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 
 import { fontVariables } from "@/app/fonts";
 import { Providers } from "@/components/common/providers";
-import { ScrollIndicator } from "@/components/common/scroll-indicator";
 import { StickyHeader } from "@/components/common/sticky-header";
 import { Footer } from "@/components/sections/footer";
 import { buildBaseMetadata, buildGovernmentServiceJsonLd } from "@/lib/seo";
@@ -23,10 +22,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${fontVariables} bg-background text-foreground antialiased`}>
+      <body className={`${fontVariables} bg-background text-text-primary antialiased`}>
         <Suspense fallback={null}>
           <Providers>
-            <ScrollIndicator />
             <a href="#main-content" className="skip-link">
               Skip to main content
             </a>

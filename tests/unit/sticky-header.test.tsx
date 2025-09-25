@@ -1,39 +1,25 @@
-import React, { act } from "react";
+import { fireEvent } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { StickyHeader } from "@/components/common/sticky-header";
 
-import { render, screen, waitFor } from "../utils/test-utils";
-
-function setScrollY(value: number) {
-  Object.defineProperty(window, "scrollY", {
-    configurable: true,
-    writable: true,
-    value,
-  });
-  window.dispatchEvent(new Event("scroll"));
-}
+import { render, screen } from "../utils/test-utils";
 
 describe("StickyHeader", () => {
-  it("renders navigation with call to action", () => {
+  it("renders nav links and primary CTA", () => {
     render(<StickyHeader />);
 
     expect(screen.getByText("TPRI")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Book Briefing" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "The Problem" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Take Action" })).toBeInTheDocument();
   });
 
-  it("toggles scrolled styling based on window scroll position", async () => {
-    const { container } = render(<StickyHeader />);
-    const header = container.querySelector("header");
-    expect(header).toBeTruthy();
+  it("toggles the mobile menu", () => {
+    render(<StickyHeader />);
+    const toggle = screen.getByRole("button", { name: /toggle navigation/i });
 
-    setScrollY(0);
-    expect(header!.className).not.toContain("shadow-elevated");
-
-    await act(async () => {
-      setScrollY(180);
-    });
-
-    await waitFor(() => expect(header!.className).toContain("shadow-elevated"));
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
   });
 });

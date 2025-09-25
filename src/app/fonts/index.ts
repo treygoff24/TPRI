@@ -1,21 +1,23 @@
-import { Inter, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Playfair_Display } from "next/font/google";
 
-export const headingFont = Source_Serif_4({
+export const sansFont = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
   display: "swap",
-  variable: "--font-heading",
 });
 
-export const bodyFont = Inter({
+export const serifFont = Playfair_Display({
   subsets: ["latin"],
+  variable: "--font-serif",
   display: "swap",
-  variable: "--font-body",
+  weight: ["400", "700", "900"],
 });
 
-export const monoFont = JetBrains_Mono({
+export const monoFont = IBM_Plex_Mono({
   subsets: ["latin"],
-  display: "swap",
   variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
-export const fontVariables = [headingFont.variable, bodyFont.variable, monoFont.variable].join(" ");
+export const fontVariables = [sansFont.variable, serifFont.variable, monoFont.variable].join(" ");

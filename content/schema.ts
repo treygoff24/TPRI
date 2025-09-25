@@ -15,7 +15,7 @@ export const sectionFrontmatterSchema = z.object({
   title: z.string(),
   eyebrow: z.string().optional(),
   summary: z.string().optional(),
-  background: z.enum(["default", "muted", "brand"]).default("default"),
+  background: z.enum(["default", "surface"]).default("default"),
   ctas: z.array(ctaSchema).optional(),
 });
 

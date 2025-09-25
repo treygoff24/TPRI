@@ -9,72 +9,42 @@ export type OgSection = {
 export const OG_SECTIONS: OgSection[] = [
   {
     id: "hero",
-    title: "Total Political Risk Insurance",
-    summary: "Mobilize $3T of American investment to counter China without new taxpayer spending.",
+    title: "Unlock $3 Trillion in American Investment",
+    summary: "Private capital beats state control and keeps allies aligned with the United States.",
   },
   {
-    id: "paraguay-countdown",
-    title: "The Countdown Since Paraguay Chose the United States",
+    id: "problem",
+    title: "The Strategic Competition",
     summary:
-      "Paraguay is the last South American ally of Taiwan—every day of inaction invites new pressure from Beijing.",
+      "China’s state-backed financing is locking in ports, minerals, and influence across the Americas.",
   },
   {
-    id: "china-expansion",
-    title: "The $137 Billion Problem",
+    id: "solution",
+    title: "Our Solution",
     summary:
-      "China’s state-backed investments in the Americas outpace the United States by more than 4-to-1.",
+      "Political risk insurance, certified zones, and triple-damages recovery unlock private capital.",
   },
   {
-    id: "executive-summary",
-    title: "Executive Summary for Policymakers",
+    id: "evidence",
+    title: "Proven Results in Honduras",
     summary:
-      "What TPRI is, how it works, why it is urgent, and the safeguards that keep it accountable.",
+      "Próspera demonstrates how transparent zones and long-term coverage deliver real outcomes.",
   },
   {
-    id: "how-it-works",
-    title: "How TPRI Works",
-    summary: "Three layers of understanding—from a 30-second overview to a technical deep dive.",
-  },
-  {
-    id: "strategic-zones",
-    title: "Strategic Economic Zones — Built for American Interests",
-    summary:
-      "Certified zones partner with the United States to accelerate investment while locking out authoritarian influence.",
-  },
-  {
-    id: "prospera-case-study",
-    title: "Case Study — Próspera Proves the Model",
-    summary:
-      "Honduras already demonstrates how TPRI-ready zones attract clean investment and community support.",
-  },
-  {
-    id: "tpri-vs-pri",
-    title: "TPRI Makes Political Risk Insurance Work for American Business",
-    summary:
-      "Traditional PRI tools are too short-term and too narrow—TPRI delivers 10-20× more mobilized capital.",
-  },
-  {
-    id: "faq",
-    title: "Questions from Policymakers",
-    summary:
-      "Straightforward answers for fiscal conservatives, national security hawks, and progressive reformers alike.",
-  },
-  {
-    id: "downloads",
-    title: "Downloads & Resources",
-    summary:
-      "Staff-ready briefs, model legislation, and coalition materials optimized for offline access.",
-  },
-  {
-    id: "contact",
-    title: "Briefings & Coalition Support",
-    summary: "Book a confidential briefing or join the coalition advancing TPRI legislation.",
+    id: "resources",
+    title: "Resources for Policymakers",
+    summary: "Briefings, legislative text, and coalition tools ready for immediate distribution.",
   },
   {
     id: "footer",
     title: "Build the American Alternative",
     summary:
-      "Mobilize a trillion dollars of clean capital and lock in democratic norms across the Americas.",
+      "Private capital keeps the hemisphere free, prosperous, and aligned with American values.",
+  },
+  {
+    id: "action",
+    title: "Take Action",
+    summary: "Schedule briefings or coordinate coalition outreach with one inbox.",
   },
 ];
 
@@ -86,10 +56,10 @@ export function resolveOgSection(sectionId: string | null): OgSection | undefine
 }
 
 export function renderOgImage(section?: OgSection): ReactElement {
-  const title = section?.title ?? "Total Political Risk Insurance";
+  const title = section?.title ?? "Unlock $3 Trillion in American Investment";
   const summary =
     section?.summary ??
-    "Mobilize $3T of American investment with Strategic Economic Zones to out-compete authoritarian influence.";
+    "Political risk insurance plus certified zones unlock private capital and counter authoritarian financing.";
 
   return (
     <div
@@ -98,11 +68,11 @@ export function renderOgImage(section?: OgSection): ReactElement {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: "linear-gradient(135deg, #061225 0%, #0A3161 55%, #B21E2E 100%)",
-        color: "#F8FAFC",
-        padding: "56px",
+        background: "linear-gradient(135deg, #f8fafb 0%, #ffffff 60%, #e6f0ff 100%)",
+        color: "#0a0f14",
+        padding: "48px",
         position: "relative",
-        fontFamily: "Source Serif 4, Georgia, serif",
+        fontFamily: "Playfair Display, " + "Georgia, serif",
         justifyContent: "space-between",
       }}
     >
@@ -111,7 +81,7 @@ export function renderOgImage(section?: OgSection): ReactElement {
           position: "absolute",
           inset: "0",
           backgroundImage:
-            "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(circle at 80% 15%, rgba(239,178,66,0.18), transparent 50%)",
+            "radial-gradient(circle at 15% 20%, rgba(0,102,255,0.08), transparent 55%), radial-gradient(circle at 75% 25%, rgba(0,212,170,0.08), transparent 45%)",
           pointerEvents: "none",
         }}
       />
@@ -126,22 +96,23 @@ export function renderOgImage(section?: OgSection): ReactElement {
         <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "70%" }}>
           <span
             style={{
-              fontSize: "20px",
-              letterSpacing: "0.4em",
+              fontSize: "18px",
+              letterSpacing: "0.35em",
               textTransform: "uppercase",
               fontWeight: 600,
-              color: "rgba(248,250,252,0.72)",
+              color: "rgba(10, 15, 20, 0.55)",
+              fontFamily: "Inter, system-ui, sans-serif",
             }}
           >
             TPRI Coalition
           </span>
-          <h1 style={{ fontSize: "64px", lineHeight: 1.05, margin: 0 }}>{title}</h1>
+          <h1 style={{ fontSize: "60px", lineHeight: 1.05, margin: 0 }}>{title}</h1>
           <p
             style={{
-              fontSize: "28px",
+              fontSize: "24px",
               lineHeight: 1.3,
               margin: 0,
-              color: "rgba(248,250,252,0.82)",
+              color: "rgba(10, 15, 20, 0.72)",
               fontFamily: "Inter, system-ui, sans-serif",
             }}
           >
@@ -151,12 +122,12 @@ export function renderOgImage(section?: OgSection): ReactElement {
         <div
           style={{
             alignSelf: "flex-start",
-            padding: "12px 20px",
+            padding: "10px 18px",
             borderRadius: "9999px",
-            border: "1px solid rgba(248,250,252,0.35)",
-            fontSize: "20px",
+            border: "1px solid rgba(0, 102, 255, 0.15)",
+            fontSize: "18px",
             fontFamily: "Inter, system-ui, sans-serif",
-            background: "rgba(6,18,37,0.35)",
+            background: "rgba(230, 240, 255, 0.6)",
           }}
         >
           {section ? `Section · ${section.id}` : "Campaign Overview"}
@@ -169,8 +140,8 @@ export function renderOgImage(section?: OgSection): ReactElement {
           justifyContent: "space-between",
           alignItems: "center",
           fontFamily: "Inter, system-ui, sans-serif",
-          fontSize: "22px",
-          color: "rgba(248,250,252,0.78)",
+          fontSize: "20px",
+          color: "rgba(10, 15, 20, 0.62)",
         }}
       >
         <span>Mobilize private capital. Defend democratic markets.</span>
