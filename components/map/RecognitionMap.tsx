@@ -12,7 +12,7 @@ import maplibregl, {
   type StyleSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { bbox, centroid } from "@turf/turf";
+import { centroid } from "@turf/turf";
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
 
 import type {
@@ -33,11 +33,18 @@ import { Tooltip, type TooltipData } from "./Tooltip";
 
 const COUNTRIES_SOURCE_ID = "countries";
 const FILL_LAYER_ID = "countries-fill";
+const USA_PATTERN_LAYER_ID = "countries-usa-pattern";
 const OUTLINE_LAYER_ID = "countries-outline";
 const HIGHLIGHT_LAYER_ID = "countries-highlight";
 
 const DEFAULT_HEIGHT = 520;
 const MAP_PADDING: PaddingOptions = { top: 24, bottom: 24, left: 24, right: 24 };
+const DEFAULT_BOUNDS: maplibregl.LngLatBoundsLike = [
+  [-170, -60],
+  [-20, 85],
+];
+const USA_CODE = "USA";
+const USA_PATTERN_IMAGE_ID = "usa-flag-pattern";
 
 function createBaseStyle(tokens: StyleTokens["colors"]): StyleSpecification {
   return {
@@ -53,6 +60,50 @@ function createBaseStyle(tokens: StyleTokens["colors"]): StyleSpecification {
       },
     ],
   } satisfies StyleSpecification;
+}
+
+async function createUsaFlagPattern(): Promise<ImageBitmap> {
+  const width = 96;
+  const height = 48;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    throw new Error("Unable to obtain 2D context for flag pattern");
+  }
+
+  const stripeHeight = height / 13;
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.fillStyle = "#B22234";
+  for (let i = 0; i < 13; i += 2) {
+    ctx.fillRect(0, i * stripeHeight, width, stripeHeight);
+  }
+
+  const cantonWidth = width * 0.4;
+  const cantonHeight = stripeHeight * 7;
+  ctx.fillStyle = "#3C3B6E";
+  ctx.fillRect(0, 0, cantonWidth, cantonHeight);
+
+  ctx.fillStyle = "#FFFFFF";
+  const rows = 4;
+  const cols = 5;
+  const starRadius = Math.min(stripeHeight, cantonWidth / cols) * 0.12;
+
+  for (let row = 0; row < rows; row++) {
+    const y = stripeHeight / 2 + (row * cantonHeight) / rows;
+    for (let col = 0; col < cols; col++) {
+      const x = (cantonWidth / (cols + 1)) * (col + 1);
+      ctx.beginPath();
+      ctx.arc(x, y, starRadius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  return createImageBitmap(canvas);
 }
 
 export type RecognitionMapProps = {
@@ -276,33 +327,32 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
         });
 
         mapRef.current = map;
+        boundsRef.current = DEFAULT_BOUNDS;
 
-        const boundsArray = bbox(featureCollection);
-        boundsRef.current = [
-          [boundsArray[0], boundsArray[1]],
-          [boundsArray[2], boundsArray[3]],
-        ];
-
-        map.on("load", () => {
-          if (!map) return;
-          if (!boundsRef.current) {
-            boundsRef.current = [
-              [-170, -60],
-              [-20, 85],
-            ];
-          }
-          map.fitBounds(boundsRef.current, {
+        map.on("load", async () => {
+          const loadedMap = mapRef.current;
+          if (!loadedMap) return;
+          loadedMap.fitBounds(boundsRef.current ?? DEFAULT_BOUNDS, {
             padding: MAP_PADDING,
             duration: 0,
           });
 
-          map.addSource(COUNTRIES_SOURCE_ID, {
+          loadedMap.addSource(COUNTRIES_SOURCE_ID, {
             type: "geojson",
             data: featureCollection,
             promoteId: "iso_a3",
           });
 
-          map.addLayer({
+          if (!loadedMap.hasImage(USA_PATTERN_IMAGE_ID)) {
+            try {
+              const pattern = await createUsaFlagPattern();
+              loadedMap.addImage(USA_PATTERN_IMAGE_ID, pattern, { pixelRatio: 2, sdf: false });
+            } catch (flagError) {
+              console.error(flagError);
+            }
+          }
+
+          loadedMap.addLayer({
             id: FILL_LAYER_ID,
             type: "fill",
             source: COUNTRIES_SOURCE_ID,
@@ -312,7 +362,20 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             },
           });
 
-          map.addLayer({
+          if (loadedMap.hasImage(USA_PATTERN_IMAGE_ID)) {
+            loadedMap.addLayer({
+              id: USA_PATTERN_LAYER_ID,
+              type: "fill",
+              source: COUNTRIES_SOURCE_ID,
+              filter: ["==", ["get", "iso_a3"], USA_CODE],
+              paint: {
+                "fill-pattern": USA_PATTERN_IMAGE_ID,
+                "fill-opacity": 1,
+              },
+            });
+          }
+
+          loadedMap.addLayer({
             id: OUTLINE_LAYER_ID,
             type: "line",
             source: COUNTRIES_SOURCE_ID,
@@ -322,7 +385,7 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             },
           });
 
-          map.addLayer({
+          loadedMap.addLayer({
             id: HIGHLIGHT_LAYER_ID,
             type: "line",
             source: COUNTRIES_SOURCE_ID,
@@ -333,7 +396,7 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             filter: ["==", ["get", "iso_a3"], ""],
           });
 
-          map.on("mousemove", FILL_LAYER_ID, (event: MapLayerMouseEvent) => {
+          const handleMouseMove = (event: MapLayerMouseEvent) => {
             const feature = event.features?.[0] as MapGeoJSONFeature | undefined;
             if (!feature) return;
             const iso = (feature.properties?.iso_a3 ?? feature.id) as string | undefined;
@@ -355,9 +418,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             if (canvas) {
               canvas.style.cursor = "pointer";
             }
-          });
+          };
 
-          map.on("mouseleave", FILL_LAYER_ID, () => {
+          const handleMouseLeave = () => {
             const canvas = mapRef.current?.getCanvas();
             if (canvas) {
               canvas.style.cursor = "";
@@ -380,9 +443,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             updateHoverState(null);
             updateHighlight(null);
             hideTooltip();
-          });
+          };
 
-          map.on("click", FILL_LAYER_ID, (event: MapLayerMouseEvent) => {
+          const handleMouseClick = (event: MapLayerMouseEvent) => {
             const feature = event.features?.[0] as MapGeoJSONFeature | undefined;
             if (!feature) return;
             const iso = (feature.properties?.iso_a3 ?? feature.id) as string | undefined;
@@ -392,9 +455,20 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
             pinnedIsoRef.current = iso;
             setPinnedIso(iso);
             showTooltip({ entry, point: { x: event.point.x, y: event.point.y }, pinned: true });
+          };
+
+          const interactiveLayers = [FILL_LAYER_ID];
+          if (loadedMap.getLayer(USA_PATTERN_LAYER_ID)) {
+            interactiveLayers.push(USA_PATTERN_LAYER_ID);
+          }
+
+          interactiveLayers.forEach((layerId) => {
+            loadedMap.on("mousemove", layerId, handleMouseMove);
+            loadedMap.on("mouseleave", layerId, handleMouseLeave);
+            loadedMap.on("click", layerId, handleMouseClick);
           });
 
-          map.on("click", (event: MapMouseEvent) => {
+          loadedMap.on("click", (event: MapMouseEvent) => {
             const mapInstance = mapRef.current;
             if (!mapInstance) return;
             const features = mapInstance.queryRenderedFeatures(event.point, {
@@ -439,11 +513,22 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
     if (activeKinds.length === 2) {
       map.setFilter(FILL_LAYER_ID, undefined);
       map.setFilter(OUTLINE_LAYER_ID, undefined);
+      if (map.getLayer(USA_PATTERN_LAYER_ID)) {
+        map.setFilter(USA_PATTERN_LAYER_ID, ["==", ["get", "iso_a3"], USA_CODE]);
+      }
     } else {
       const isoList = activeKinds.flatMap((kind) => isoLookup[kind]);
-      const filter: FilterSpecification = ["in", ["get", "iso_a3"], ["literal", isoList]];
-      map.setFilter(FILL_LAYER_ID, filter);
-      map.setFilter(OUTLINE_LAYER_ID, filter);
+      const baseFilter: FilterSpecification = ["in", ["get", "iso_a3"], ["literal", isoList]];
+      map.setFilter(FILL_LAYER_ID, baseFilter);
+      map.setFilter(OUTLINE_LAYER_ID, baseFilter);
+      if (map.getLayer(USA_PATTERN_LAYER_ID)) {
+        const usaFilter: FilterSpecification = [
+          "all",
+          ["==", ["get", "iso_a3"], USA_CODE],
+          ["in", ["get", "iso_a3"], ["literal", isoList]],
+        ];
+        map.setFilter(USA_PATTERN_LAYER_ID, usaFilter);
+      }
     }
 
     const activeIsoSet = new Set(activeKinds.flatMap((kind) => isoLookup[kind]));
