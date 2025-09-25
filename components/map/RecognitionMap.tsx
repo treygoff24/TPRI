@@ -286,6 +286,7 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
           attributionControl: false,
           dragRotate: false,
           pitchWithRotate: false,
+          renderWorldCopies: false,
         });
 
         mapRef.current = map;
