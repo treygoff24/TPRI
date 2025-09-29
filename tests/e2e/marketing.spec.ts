@@ -16,7 +16,10 @@ test.describe("Marketing experience", () => {
     await expect(problemSection).toBeVisible();
     await expect(problemSection.getByText("$137B")).toBeVisible();
     await expect(problemSection.getByText("Diplomatic Recognition in the Americas")).toBeVisible();
-    await expect(problemSection.locator(".maplibregl-canvas"), "map renders").toBeVisible();
+    await expect(
+      problemSection.locator('[data-testid="recognition-map"]'),
+      "map renders",
+    ).toBeVisible();
   });
 
   test("solution pillars outline the program", async ({ page }) => {

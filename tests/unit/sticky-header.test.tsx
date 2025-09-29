@@ -10,8 +10,9 @@ describe("StickyHeader", () => {
     render(<StickyHeader />);
 
     expect(screen.getByText("TPRI")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "The Problem" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Take Action" })).toBeInTheDocument();
+    // Both desktop and mobile nav have these links, so use getAllByRole
+    expect(screen.getAllByRole("link", { name: "The Problem" })).toHaveLength(2);
+    expect(screen.getAllByRole("link", { name: "Take Action" })).toHaveLength(2);
   });
 
   it("toggles the mobile menu", () => {

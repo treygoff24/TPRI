@@ -12,10 +12,10 @@ function analyticsDisabled() {
   const win = window as Window & { doNotTrack?: string | null };
   const nav =
     typeof navigator !== "undefined"
-      ? ((navigator as Navigator & {
+      ? (navigator as Navigator & {
           doNotTrack?: string | null;
           globalPrivacyControl?: boolean;
-        }) || null)
+        }) || null
       : null;
 
   if (win.doNotTrack === "1") return true;

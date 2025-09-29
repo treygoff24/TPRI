@@ -38,7 +38,8 @@ class IntersectionObserverMock implements IntersectionObserver {
   unobserve(): void {}
 }
 
-globalThis.IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;
+globalThis.IntersectionObserver =
+  IntersectionObserverMock as unknown as typeof IntersectionObserver;
 
 class ResizeObserverMock implements ResizeObserver {
   constructor(private readonly callback: ResizeObserverCallback) {}

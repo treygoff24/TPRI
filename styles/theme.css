@@ -28,6 +28,44 @@
   --warning: 245 158 11;
   --error: 239 68 68;
 
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, rgb(0 102 255) 0%, rgb(0 168 255) 100%);
+  --gradient-accent: linear-gradient(135deg, rgb(0 212 170) 0%, rgb(52 211 153) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgb(0 102 255) 0%,
+    rgb(99 102 241) 50%,
+    rgb(139 92 246) 100%
+  );
+  --gradient-text: linear-gradient(135deg, rgb(0 102 255) 0%, rgb(99 102 241) 100%);
+  --gradient-card: linear-gradient(135deg, rgba(0 102 255 / 0.05) 0%, rgba(99 102 241 / 0.05) 100%);
+  --gradient-glow: radial-gradient(
+    600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(0 102 255 / 0.15),
+    transparent 40%
+  );
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0 0 0 / 0.1), 0 2px 4px -2px rgba(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0 0 0 / 0.1), 0 4px 6px -4px rgba(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0 0 0 / 0.1), 0 8px 10px -6px rgba(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0 0 0 / 0.05);
+  --shadow-glow: 0 0 20px rgba(0 102 255 / 0.15);
+  --shadow-primary: 0 8px 32px rgba(0 102 255 / 0.2);
+  --shadow-accent: 0 8px 32px rgba(0 212 170 / 0.2);
+
+  /* Animation timing */
+  --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Glass morphism */
+  --glass-bg: rgba(255 255 255 / 0.8);
+  --glass-border: rgba(255 255 255 / 0.2);
+  --glass-blur: blur(12px);
+
   /* Typography */
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
@@ -39,6 +77,14 @@
   --space-section: 6rem;
   --max-width-prose: 65ch;
   --radius: 0.75rem;
+
+  /* Z-index scale */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-tooltip: 50;
 }
 
 [data-theme="dark"],
@@ -64,6 +110,39 @@
   --success: 52 211 153;
   --warning: 251 191 36;
   --error: 248 113 113;
+
+  /* Dark mode gradients */
+  --gradient-primary: linear-gradient(135deg, rgb(102 178 255) 0%, rgb(139 178 255) 100%);
+  --gradient-accent: linear-gradient(135deg, rgb(16 185 163) 0%, rgb(52 211 153) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgb(102 178 255) 0%,
+    rgb(139 92 246) 50%,
+    rgb(167 139 250) 100%
+  );
+  --gradient-text: linear-gradient(135deg, rgb(102 178 255) 0%, rgb(139 92 246) 100%);
+  --gradient-card: linear-gradient(135deg, rgba(102 178 255 / 0.1) 0%, rgba(139 92 246 / 0.1) 100%);
+  --gradient-glow: radial-gradient(
+    600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(102 178 255 / 0.15),
+    transparent 40%
+  );
+
+  /* Dark mode shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0 0 0 / 0.3), 0 2px 4px -2px rgba(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0 0 0 / 0.3), 0 4px 6px -4px rgba(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0 0 0 / 0.3), 0 8px 10px -6px rgba(0 0 0 / 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgba(0 0 0 / 0.5);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgba(102 178 255 / 0.25);
+  --shadow-primary: 0 8px 32px rgba(102 178 255 / 0.3);
+  --shadow-accent: 0 8px 32px rgba(16 185 163 / 0.3);
+
+  /* Dark mode glass morphism */
+  --glass-bg: rgba(26 31 46 / 0.8);
+  --glass-border: rgba(255 255 255 / 0.1);
+  --glass-blur: blur(12px);
 }
 
 :focus-visible {
