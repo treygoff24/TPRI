@@ -30,7 +30,7 @@ export function ResourcesSection({ resources }: ResourcesSectionProps) {
 
   return (
     <Section id="resources" className="relative overflow-hidden">
-      <SectionBackground variant="resources" />
+      <SectionBackground variant="hero" />
 
       <div className="relative z-10">
         <div className="mb-16 text-center animate-fade-in">

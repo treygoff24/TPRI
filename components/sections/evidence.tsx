@@ -18,8 +18,8 @@ export function EvidenceSection({ metrics }: EvidenceSectionProps) {
   };
 
   return (
-    <Section id="evidence" background="surface" className="relative overflow-hidden">
-      <SectionBackground variant="evidence" />
+    <Section id="evidence" className="relative overflow-hidden">
+      <SectionBackground variant="hero" />
 
       <div className="relative z-10">
         <div className="mb-16 text-center animate-fade-in">

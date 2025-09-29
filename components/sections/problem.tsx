@@ -7,8 +7,8 @@ import { StatCard } from "@/components/ui/StatCard";
 
 export function ProblemSection() {
   return (
-    <Section id="problem" background="surface" className="relative overflow-hidden">
-      <SectionBackground variant="problem" />
+    <Section id="problem" className="relative overflow-hidden">
+      <SectionBackground variant="hero" />
 
       <div className="relative z-10">
         <div className="text-center mb-16 animate-fade-in">

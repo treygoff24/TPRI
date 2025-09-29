@@ -7,7 +7,7 @@ import { SectionBackground } from "@/components/ui/SectionBackground";
 export function SolutionSection() {
   return (
     <Section id="solution" className="relative overflow-hidden">
-      <SectionBackground variant="solution" />
+      <SectionBackground variant="hero" />
 
       <div className="relative z-10">
         <div className="text-center mb-16 animate-fade-in">
@@ -130,7 +130,7 @@ export function SolutionSection() {
 
                     {/* Arrow connector (hidden on mobile) */}
                     {index < 2 && (
-                      <div className="hidden md:block absolute top-8 -right-6 text-primary/30">
+                      <div className="hidden md:block absolute top-5 -right-6 text-primary/30">
                         <ArrowRight className="w-6 h-6" />
                       </div>
                     )}
@@ -147,10 +147,6 @@ export function SolutionSection() {
               </div>
             </div>
           </div>
-
-          {/* Decorative elements */}
-          <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-primary rounded-full opacity-20" />
-          <div className="absolute -bottom-6 -right-6 w-8 h-8 bg-gradient-accent rounded-full opacity-30" />
         </div>
       </div>
     </Section>

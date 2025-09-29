@@ -8,8 +8,8 @@ import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export function ActionSection() {
   return (
-    <Section id="action" background="surface" className="relative overflow-hidden">
-      <SectionBackground variant="action" />
+    <Section id="action" className="relative overflow-hidden">
+      <SectionBackground variant="hero" />
 
       <div className="relative z-10">
         <div className="mx-auto max-w-5xl text-center mb-16 animate-fade-in">
@@ -34,9 +34,6 @@ export function ActionSection() {
             className="group relative text-left animate-slide-up"
             style={{ animationDelay: "0.1s" }}
           >
-            {/* Gradient accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary rounded-t-xl" />
-
             <div className="space-y-6">
               {/* Header */}
               <div className="flex items-start gap-4">
@@ -92,9 +89,6 @@ export function ActionSection() {
             className="group relative text-left animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            {/* Gradient accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-accent rounded-t-xl" />
-
             <div className="space-y-6">
               {/* Header */}
               <div className="flex items-start gap-4">
