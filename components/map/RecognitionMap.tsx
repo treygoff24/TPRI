@@ -10,6 +10,7 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import { geoConicEqualArea, geoPath } from "d3-geo";
+import { rewind } from "@turf/turf";
 import type { Feature, FeatureCollection, LineString, MultiPolygon, Polygon } from "geojson";
 
 import type {
@@ -138,7 +139,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
 
         if (cancelled) return;
 
-        const featureCollection = geojsonResponse as FeatureCollection<Polygon | MultiPolygon>;
+        // Rewind GeoJSON to fix winding order for D3 (D3 expects clockwise, GeoJSON RFC 7946 is counter-clockwise)
+        const rewoundGeoJSON = rewind(geojsonResponse, { reverse: true });
+        const featureCollection = rewoundGeoJSON as FeatureCollection<Polygon | MultiPolygon>;
         const isoLookup: IsoLookup = { china: [], taiwan: [] };
         const entryMap = new Map<string, RecognitionEntry>();
 
