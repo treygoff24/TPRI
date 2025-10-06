@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { contactFormSchema, type ContactFormData } from "@/lib/forms";
+import { logError } from "@/lib/logger";
+import { rateLimit } from "@/lib/rate-limit";
 
 const CRM_WEBHOOK_URL = process.env.CRM_WEBHOOK_URL;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -30,7 +32,7 @@ async function forwardToCrm(payload: ContactFormData) {
 
     return { channel: "crm", status: "fulfilled" as const };
   } catch (error) {
-    console.error("CRM webhook call failed", error);
+    logError("CRM webhook call failed", error);
     return { channel: "crm", status: "rejected" as const };
   }
 }
@@ -61,19 +63,23 @@ async function sendResendConfirmation(payload: ContactFormData) {
 
     return { channel: "resend", status: "fulfilled" as const };
   } catch (error) {
-    console.error("Resend notification failed", error);
+    logError("Resend notification failed", error);
     return { channel: "resend", status: "rejected" as const };
   }
 }
 
 export async function POST(request: Request) {
+  // Apply rate limiting
+  const rateLimitResponse = rateLimit(request);
+  if (rateLimitResponse) return rateLimitResponse;
+
   let payload: ContactFormData;
 
   try {
     const json = await request.json();
     payload = contactFormSchema.parse(json);
   } catch (error) {
-    console.error("Invalid contact payload", error);
+    logError("Invalid contact payload", error);
     return NextResponse.json(
       {
         success: false,

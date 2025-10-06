@@ -13,6 +13,7 @@ import { geoAzimuthalEqualArea, geoPath } from "d3-geo";
 import { rewind } from "@turf/turf";
 import type { Feature, FeatureCollection, LineString, MultiPolygon, Polygon } from "geojson";
 
+import { logError } from "@/lib/logger";
 import type {
   CitationsIndex,
   RecognitionEntry,
@@ -102,12 +103,15 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
     const element = containerRef.current;
     if (!element) return;
 
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout | null = null;
     const resize = () => {
-      clearTimeout(timeoutId);
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
       timeoutId = setTimeout(() => {
         const rect = element.getBoundingClientRect();
         setDimensions({ width: rect.width, height: rect.height });
+        timeoutId = null;
       }, 150);
     };
 
@@ -115,7 +119,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
     const observer = new ResizeObserver(resize);
     observer.observe(element);
     return () => {
-      clearTimeout(timeoutId);
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
       observer.disconnect();
     };
   }, [height]);
@@ -141,6 +147,11 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
 
         // Rewind GeoJSON to fix winding order for D3 (D3 expects clockwise, GeoJSON RFC 7946 is counter-clockwise)
         const rewoundGeoJSON = rewind(geojsonResponse, { reverse: true });
+
+        // Validate GeoJSON structure
+        if (!rewoundGeoJSON || rewoundGeoJSON.type !== "FeatureCollection") {
+          throw new Error("Invalid GeoJSON structure after rewind");
+        }
         const featureCollection = rewoundGeoJSON as FeatureCollection<Polygon | MultiPolygon>;
         const isoLookup: IsoLookup = { china: [], taiwan: [] };
         const entryMap = new Map<string, RecognitionEntry>();
@@ -152,7 +163,13 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
 
         const enrichedFeatures: CountryFeature[] = [];
         for (const feature of featureCollection.features) {
-          const iso = (feature.properties?.iso_a3 ?? feature.id) as string | undefined;
+          // Safely extract ISO code with validation
+          const iso =
+            typeof feature.properties?.iso_a3 === "string"
+              ? feature.properties.iso_a3
+              : typeof feature.id === "string"
+                ? feature.id
+                : undefined;
           if (!iso) continue;
           const entry = entryMap.get(iso);
           const recognition = entry?.recognition;
@@ -184,7 +201,7 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
         setReady(true);
       } catch (err) {
         if (!cancelled) {
-          console.error(err);
+          logError("Failed to initialise recognition map", err);
           setError(err instanceof Error ? err.message : "Failed to initialise map");
         }
       }
@@ -230,6 +247,17 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
       const path = pathGenerator(feature as Feature<Polygon | MultiPolygon>);
       if (!path) continue;
       const centroid = pathGenerator.centroid(feature as Feature<Polygon | MultiPolygon>);
+
+      // Validate centroid
+      if (
+        !centroid ||
+        !Array.isArray(centroid) ||
+        centroid.length !== 2 ||
+        centroid.some((c) => typeof c !== "number" || isNaN(c))
+      ) {
+        continue;
+      }
+
       const entry = entryMapRef.current.get(iso);
       const name = entry?.name ?? feature.properties?.name ?? iso;
       const recognition = entry?.recognition ?? null;

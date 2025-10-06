@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { SectionBackground } from "@/components/ui/SectionBackground";
+import { CONTACT_EMAILS } from "@/lib/constants";
 
 export function ActionSection() {
   return (
@@ -74,7 +75,7 @@ export function ActionSection() {
 
               {/* CTA */}
               <Button asChild variant="gradient" size="lg" className="w-full group/btn">
-                <Link href="mailto:briefings@tpri.gov">
+                <Link href={`mailto:${CONTACT_EMAILS.briefings}`}>
                   <span>Request Briefing</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                 </Link>
@@ -136,7 +137,7 @@ export function ActionSection() {
                 size="lg"
                 className="w-full group/btn border-accent text-accent hover:bg-accent hover:text-white"
               >
-                <Link href="mailto:coalition@tpri.gov">
+                <Link href={`mailto:${CONTACT_EMAILS.coalition}`}>
                   <span>Join the Coalition</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                 </Link>

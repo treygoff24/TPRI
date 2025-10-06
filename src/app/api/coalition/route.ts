@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
 import { coalitionFormSchema, type CoalitionFormData } from "@/lib/forms";
+import { logError } from "@/lib/logger";
+import { rateLimit } from "@/lib/rate-limit";
+import { sanitizeEmailContent } from "@/lib/sanitize";
 
 const CRM_WEBHOOK_URL = process.env.CRM_WEBHOOK_URL;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -31,7 +34,7 @@ async function forwardToCrm(payload: CoalitionFormData) {
 
     return { channel: "crm", status: "fulfilled" as const };
   } catch (error) {
-    console.error("CRM webhook call failed", error);
+    logError("CRM webhook call failed", error);
     return { channel: "crm", status: "rejected" as const };
   }
 }
@@ -71,7 +74,15 @@ async function sendResendWorkflow(payload: CoalitionFormData) {
           from: RESEND_FROM_EMAIL,
           to: COALITION_ALERT_EMAIL,
           subject: "New TPRI coalition inquiry",
-          text: `Coalition lead: ${payload.fullName} (${payload.organization})\nRole: ${payload.role}\nType: ${payload.organizationType}\nInterest: ${payload.interest}\nTimeline: ${payload.timeline}\nEmail: ${payload.email}\n\nMessage:\n${payload.message ?? "(none)"}`,
+          text: `Coalition lead: ${sanitizeEmailContent(payload.fullName)} (${sanitizeEmailContent(payload.organization)})
+Role: ${sanitizeEmailContent(payload.role)}
+Type: ${payload.organizationType}
+Interest: ${payload.interest}
+Timeline: ${payload.timeline}
+Email: ${payload.email}
+
+Message:
+${payload.message ? sanitizeEmailContent(payload.message, 1000) : "(none)"}`,
         }),
       });
 
@@ -82,19 +93,23 @@ async function sendResendWorkflow(payload: CoalitionFormData) {
 
     return { channel: "resend", status: "fulfilled" as const };
   } catch (error) {
-    console.error("Resend coalition notification failed", error);
+    logError("Resend coalition notification failed", error);
     return { channel: "resend", status: "rejected" as const };
   }
 }
 
 export async function POST(request: Request) {
+  // Apply rate limiting
+  const rateLimitResponse = rateLimit(request);
+  if (rateLimitResponse) return rateLimitResponse;
+
   let payload: CoalitionFormData;
 
   try {
     const json = await request.json();
     payload = coalitionFormSchema.parse(json);
   } catch (error) {
-    console.error("Invalid coalition payload", error);
+    logError("Invalid coalition payload", error);
     return NextResponse.json(
       {
         success: false,
