@@ -602,8 +602,8 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
                         : colors?.taiwan
                       : "rgba(255, 255, 255, 0.25)";
                 const opacity = isActive ? (isHovered || isPinned ? 1 : 0.92) : 0.18;
-                const strokeOpacity = isActive ? 0.25 : 0.06;
-                const strokeWidth = isHovered || isPinned ? 1.8 : 1.2;
+                const strokeOpacity = isActive ? 0.6 : 0.15;
+                const strokeWidth = isHovered || isPinned ? 2.5 : 1.8;
 
                 return (
                   <g key={iso} filter={`url(#${glowId})`}>
