@@ -205,15 +205,17 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
       return null;
     }
 
-    const projection = geoConicEqualArea().parallels([8, 45]).rotate([96, 0]).center([0, 12]);
-
-    projection.fitExtent(
-      [
-        [MAP_PADDING.left, MAP_PADDING.top],
-        [dimensions.width - MAP_PADDING.right, dimensions.height - MAP_PADDING.bottom],
-      ],
-      featureCollection,
-    );
+    const projection = geoConicEqualArea()
+      .parallels([8, 45])
+      .rotate([96, 0])
+      .center([0, 12])
+      .fitExtent(
+        [
+          [MAP_PADDING.left, MAP_PADDING.top],
+          [dimensions.width - MAP_PADDING.right, dimensions.height - MAP_PADDING.bottom],
+        ],
+        featureCollection,
+      );
 
     const pathGenerator = geoPath(projection);
     const centroids = new Map<string, [number, number]>();
