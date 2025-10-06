@@ -9,7 +9,7 @@ import {
   useState,
   type MouseEvent as ReactMouseEvent,
 } from "react";
-import { geoConicEqualArea, geoPath } from "d3-geo";
+import { geoAzimuthalEqualArea, geoPath } from "d3-geo";
 import { rewind } from "@turf/turf";
 import type { Feature, FeatureCollection, LineString, MultiPolygon, Polygon } from "geojson";
 
@@ -29,7 +29,7 @@ import { Legend } from "./Legend";
 import { Tooltip, type TooltipData } from "./Tooltip";
 
 const DEFAULT_HEIGHT = 520;
-const MAP_PADDING = { top: 28, right: 36, bottom: 40, left: 36 } as const;
+const MAP_PADDING = { top: 20, right: 20, bottom: 30, left: 20 } as const;
 const GRID_LATITUDES = [-60, -40, -20, 0, 20, 40, 60];
 const GRID_LONGITUDES = [-150, -120, -90, -60, -30];
 const LATITUDE_RANGE = { min: -65, max: 75 } as const;
@@ -208,10 +208,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
       return null;
     }
 
-    const projection = geoConicEqualArea()
-      .parallels([8, 45])
-      .rotate([96, 0])
-      .center([0, 12])
+    const projection = geoAzimuthalEqualArea()
+      .rotate([100, 0])
+      .center([0, 5])
       .fitExtent(
         [
           [MAP_PADDING.left, MAP_PADDING.top],
@@ -548,9 +547,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
           >
             <defs>
               <radialGradient id={gradientId} cx="30%" cy="30%" r="85%">
-                <stop offset="0%" stopColor="rgba(56, 114, 181, 0.30)" />
-                <stop offset="55%" stopColor="rgba(14, 21, 38, 0.85)" />
-                <stop offset="100%" stopColor="rgba(6, 10, 22, 0.95)" />
+                <stop offset="0%" stopColor="rgba(56, 114, 181, 0.18)" />
+                <stop offset="55%" stopColor="rgba(14, 21, 38, 0.65)" />
+                <stop offset="100%" stopColor="rgba(6, 10, 22, 0.80)" />
               </radialGradient>
               <filter id={glowId} x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="1.6" result="coloredBlur" />
@@ -561,7 +560,7 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
               </filter>
             </defs>
             <rect width="100%" height="100%" fill={`url(#${gradientId})`} pointerEvents="none" />
-            <rect width="100%" height="100%" fill="rgba(9, 14, 26, 0.88)" pointerEvents="none" />
+            <rect width="100%" height="100%" fill="rgba(9, 14, 26, 0.70)" pointerEvents="none" />
             <g aria-hidden="true">
               {renderData.gridLines
                 .filter((line) => line.kind === "latitude")
@@ -570,9 +569,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
                     key={`lat-${line.value}`}
                     d={line.path}
                     fill="none"
-                    stroke="rgba(255, 255, 255, 0.08)"
-                    strokeWidth={0.6}
-                    strokeDasharray="4 8"
+                    stroke="rgba(255, 255, 255, 0.04)"
+                    strokeWidth={0.5}
+                    strokeDasharray="3 6"
                   />
                 ))}
               {renderData.gridLines
@@ -582,9 +581,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
                     key={`lon-${line.value}`}
                     d={line.path}
                     fill="none"
-                    stroke="rgba(255, 255, 255, 0.08)"
-                    strokeWidth={0.6}
-                    strokeDasharray="4 8"
+                    stroke="rgba(255, 255, 255, 0.04)"
+                    strokeWidth={0.5}
+                    strokeDasharray="3 6"
                   />
                 ))}
             </g>
@@ -602,9 +601,9 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
                         ? colors?.china
                         : colors?.taiwan
                       : "rgba(255, 255, 255, 0.25)";
-                const opacity = isActive ? (isHovered || isPinned ? 1 : 0.9) : 0.15;
-                const strokeOpacity = isActive ? 0.35 : 0.08;
-                const strokeWidth = isHovered || isPinned ? 2.2 : 1.6;
+                const opacity = isActive ? (isHovered || isPinned ? 1 : 0.92) : 0.18;
+                const strokeOpacity = isActive ? 0.25 : 0.06;
+                const strokeWidth = isHovered || isPinned ? 1.8 : 1.2;
 
                 return (
                   <g key={iso} filter={`url(#${glowId})`}>
@@ -621,8 +620,8 @@ export function RecognitionMap({ height = DEFAULT_HEIGHT, className }: Recogniti
                       d={path}
                       fill={fillColor ?? "rgba(255, 255, 255, 0.2)"}
                       fillOpacity={opacity}
-                      stroke="rgba(255, 255, 255, 0.18)"
-                      strokeWidth={0.6}
+                      stroke="rgba(255, 255, 255, 0.12)"
+                      strokeWidth={0.5}
                       strokeLinejoin="round"
                       className="transition-transform duration-200 ease-out"
                       style={{
