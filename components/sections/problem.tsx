@@ -66,9 +66,9 @@ export function ProblemSection() {
             {/* 2-Column Layout: Map + Stats */}
             <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 items-start">
               {/* Map Column */}
-              <div className="relative rounded-xl overflow-hidden lg:min-h-[600px] flex items-center">
+              <div className="relative rounded-xl overflow-hidden lg:min-h-[600px] flex items-center w-full">
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 rounded-xl" />
-                <InteractiveMap height={600} />
+                <InteractiveMap height={600} className="w-full" />
               </div>
 
               {/* Stats Panel Column */}
