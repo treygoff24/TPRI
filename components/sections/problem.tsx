@@ -52,7 +52,7 @@ export function ProblemSection() {
           />
         </div>
 
-        {/* Enhanced map container */}
+        {/* Map Section with Stats Panel */}
         <div className="relative">
           <div className="rounded-2xl border border-border/50 bg-white/80 backdrop-blur-sm p-8 shadow-xl hover:shadow-2xl transition-all duration-300 dark:bg-slate-800/80">
             {/* Premium header */}
@@ -63,10 +63,41 @@ export function ProblemSection() {
               <p className="text-text-secondary">Real-time view of shifting diplomatic alliances</p>
             </div>
 
-            {/* Map with subtle border glow */}
-            <div className="relative rounded-xl overflow-hidden">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 rounded-xl" />
-              <InteractiveMap />
+            {/* 2-Column Layout: Map + Stats */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 items-start">
+              {/* Map Column */}
+              <div className="relative rounded-xl overflow-hidden lg:min-h-[600px] flex items-center">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 rounded-xl" />
+                <InteractiveMap height={600} />
+              </div>
+
+              {/* Stats Panel Column */}
+              <div className="flex flex-col gap-4">
+                <div className="mb-2">
+                  <h4 className="text-lg font-semibold text-text-primary">The Diplomatic Shift</h4>
+                  <p className="text-sm text-text-secondary">
+                    Recognition at a glance across the Western Hemisphere
+                  </p>
+                </div>
+
+                <StatCard
+                  number="27"
+                  label="Recognize the PRC (Beijing)"
+                  description="Including former U.S. security partners"
+                />
+
+                <StatCard
+                  number="7"
+                  label="Recognize Taiwan (ROC)"
+                  description="Down from 22 countries in 2016"
+                />
+
+                <StatCard
+                  number="21"
+                  label="Joined Belt & Road Initiative"
+                  description="Latin America & Caribbean participants"
+                />
+              </div>
             </div>
           </div>
 
