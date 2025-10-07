@@ -47,8 +47,11 @@ export function HeroSection() {
           <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-12" />
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-4xl mx-auto">
-            <div className="group animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300">
+            <div
+              className="group animate-slide-up overflow-visible"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300 leading-tight py-2">
                 25-99 yr
               </div>
               <div className="text-base font-medium text-text-secondary group-hover:text-primary transition-colors duration-300">
@@ -56,8 +59,11 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="group animate-slide-up" style={{ animationDelay: "0.4s" }}>
-              <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300">
+            <div
+              className="group animate-slide-up overflow-visible"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300 leading-tight py-2">
                 3×
               </div>
               <div className="text-base font-medium text-text-secondary group-hover:text-primary transition-colors duration-300">
@@ -65,8 +71,11 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="group animate-slide-up" style={{ animationDelay: "0.6s" }}>
-              <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300">
+            <div
+              className="group animate-slide-up overflow-visible"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300 leading-tight py-2">
                 70%
               </div>
               <div className="text-base font-medium text-text-secondary group-hover:text-primary transition-colors duration-300">

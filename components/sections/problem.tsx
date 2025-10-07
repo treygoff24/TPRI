@@ -27,26 +27,26 @@ export function ProblemSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <StatCard
-            number="$137B"
+            number="$137B+"
             label="Chinese state investment"
-            trend="↑ 42% since 2019"
-            description="Concentrated in Latin American infrastructure and ports"
+            trend="Since 2005"
+            description="Targeted at Latin American infrastructure, ports, and minerals"
             icon={<TrendingUp className="w-6 h-6" />}
             gradient
           />
           <StatCard
-            number="9"
+            number="7"
             label="Nations switched to Beijing"
-            trend="Last 24 months"
-            description="Including 3 former U.S. security partners"
+            trend="Since 2000"
+            description="Western Hemisphere countries, most recent: Honduras (2023)"
             icon={<Users className="w-6 h-6" />}
             gradient
           />
           <StatCard
-            number="878"
-            label="Days since Paraguay stood firm"
-            trend="Last Taiwan ally in South America"
-            description="Every day increases pressure from Beijing"
+            number="$3.6B"
+            label="Peru's Chancay megaport"
+            trend="60% Chinese ownership"
+            description="Strategic Pacific gateway controlled by China's Cosco"
             icon={<Clock className="w-6 h-6" />}
             gradient
           />
