@@ -1,28 +1,28 @@
 {
   "heroStats": [
     {
-      "id": "opportunity",
-      "label": "$3T mobilized",
-      "value": 3000000000000,
-      "format": "currency",
-      "description": "Private investment catalyzed across allied markets when TPRI is enacted",
-      "citationId": "ref-opportunity"
+      "id": "coverage-duration",
+      "label": "25-99 years",
+      "value": 25,
+      "format": "number",
+      "description": "Long-term coverage period that unlocks strategic infrastructure investment",
+      "citationId": "ref-deepdive"
     },
     {
-      "id": "mobilization",
-      "label": "$92B annually",
-      "value": 92000000000,
-      "format": "currency",
-      "description": "Modeled yearly capital deployment to counter PRC influence",
-      "citationId": "ref-bri"
-    },
-    {
-      "id": "leverage",
-      "label": "15× federal leverage",
-      "value": 15,
+      "id": "recovery-multiplier",
+      "label": "3× recovery",
+      "value": 3,
       "format": "multiple",
-      "description": "Private dollars mobilized per federal credit dollar",
-      "citationId": "ref-leverage"
+      "description": "Required recovery of three times claim value within three years, creating powerful deterrence",
+      "citationId": "ref-technical"
+    },
+    {
+      "id": "us-control",
+      "label": "70% U.S. owned",
+      "value": 70,
+      "format": "percentage",
+      "description": "Zone Operators must be majority U.S.-owned, ensuring American control and alignment",
+      "citationId": "ref-zones"
     }
   ],
   "chinaExpansionStats": [
@@ -36,29 +36,37 @@
     },
     {
       "id": "recognition-switches",
-      "label": "9 allies flipped",
-      "value": 9,
+      "label": "7 Western Hemisphere allies",
+      "value": 7,
       "format": "number",
-      "description": "Countries that abandoned Taiwan recognition for Beijing since 2000",
-      "citationId": "ref-dominican"
+      "description": "Countries that switched from Taiwan to Beijing since 2000, with Honduras most recent in 2023",
+      "citationId": "ref-honduras"
     }
   ],
   "caseStudyMetrics": [
     {
       "id": "prospera-jobs",
-      "label": "38,000 jobs projected",
-      "value": 38000,
+      "label": "3,000+ jobs created",
+      "value": 3000,
       "format": "number",
-      "description": "Employment supported in Próspera zones under TPRI coverage",
+      "description": "High-quality employment created by Próspera, with 90% from local communities and 100,000+ projected",
       "citationId": "ref-prospera"
     },
     {
       "id": "prospera-fdi",
-      "label": "$1.2B FDI unlocked",
-      "value": 1200000000,
-      "format": "currency",
-      "description": "Foreign direct investment catalyzed with TPRI safeguards",
-      "citationId": "ref-case-study"
+      "label": "33% of Honduras FDI",
+      "value": 33,
+      "format": "percentage",
+      "description": "U.S. private investment into Próspera represented one-third of all greenfield FDI into Honduras",
+      "citationId": "ref-prospera"
+    },
+    {
+      "id": "prospera-businesses",
+      "label": "300+ businesses",
+      "value": 300,
+      "format": "number",
+      "description": "Companies registered in Próspera across tech, manufacturing, and medical sectors",
+      "citationId": "ref-prospera"
     }
   ]
 }

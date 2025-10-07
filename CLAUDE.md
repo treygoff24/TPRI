@@ -136,6 +136,7 @@ Vitest config mirrors these aliases explicitly.
 - **Node Version**: Requires Node 22.x (enforced via `package.json` engines field)
 - **Styling**: Tailwind CSS with custom tokens in `styles/theme.css` and `tailwind.config.ts`
 - **Zero Warnings Policy**: ESLint runs with `--max-warnings=0`
+- **No Emojis in URLs**: Never include emojis adjacent to or within URLs/links in CLI output - they make links unclickable in terminal
 
 ## Key Documentation
 

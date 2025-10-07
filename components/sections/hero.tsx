@@ -11,17 +11,19 @@ export function HeroSection() {
 
       <div className="relative z-10 text-center animate-fade-in">
         <h1 className="text-5xl sm:text-6xl lg:text-8xl font-serif font-bold text-text-primary mb-8 leading-tight">
-          Unlock $3 Trillion in
-          <span className="block text-gradient mt-4 text-shimmer">American Investment</span>
+          A Strategic Tool to Counter
+          <span className="block text-gradient mt-4 text-shimmer">
+            China&rsquo;s Economic Influence
+          </span>
         </h1>
 
         <p className="text-2xl sm:text-3xl font-semibold text-text-secondary max-w-4xl mx-auto mb-6 leading-relaxed">
-          Private capital beats state control.
+          Market-based development finance that mobilizes American private capital.
         </p>
 
         <p className="text-lg sm:text-xl text-text-muted max-w-3xl mx-auto mb-16 leading-relaxed">
-          A bipartisan insurance framework that mobilizes American investment to counter
-          authoritarian influence without taxpayer subsidies.
+          TPRI transforms American development finance by providing comprehensive, long-term
+          political risk coverage backed by statutory guarantees and aggressive recovery mechanisms.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
@@ -47,28 +49,28 @@ export function HeroSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-4xl mx-auto">
             <div className="group animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300">
-                $92B
+                25-99 yr
               </div>
               <div className="text-base font-medium text-text-secondary group-hover:text-primary transition-colors duration-300">
-                Annual Mobilization
+                Coverage Duration
               </div>
             </div>
 
             <div className="group animate-slide-up" style={{ animationDelay: "0.4s" }}>
               <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300">
-                15x
+                3×
               </div>
               <div className="text-base font-medium text-text-secondary group-hover:text-primary transition-colors duration-300">
-                Federal Leverage
+                Recovery Multiplier
               </div>
             </div>
 
             <div className="group animate-slide-up" style={{ animationDelay: "0.6s" }}>
               <div className="text-5xl sm:text-6xl font-serif font-bold text-gradient mb-3 group-hover:scale-110 transition-transform duration-300">
-                25 yr
+                70%
               </div>
               <div className="text-base font-medium text-text-secondary group-hover:text-primary transition-colors duration-300">
-                Coverage Period
+                U.S. Ownership
               </div>
             </div>
           </div>

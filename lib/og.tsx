@@ -9,8 +9,8 @@ export type OgSection = {
 export const OG_SECTIONS: OgSection[] = [
   {
     id: "hero",
-    title: "Unlock $3 Trillion in American Investment",
-    summary: "Private capital beats state control and keeps allies aligned with the United States.",
+    title: "A Strategic Tool to Counter China's Economic Influence",
+    summary: "Market-based development finance that mobilizes American private capital.",
   },
   {
     id: "problem",
@@ -56,10 +56,10 @@ export function resolveOgSection(sectionId: string | null): OgSection | undefine
 }
 
 export function renderOgImage(section?: OgSection): ReactElement {
-  const title = section?.title ?? "Unlock $3 Trillion in American Investment";
+  const title = section?.title ?? "A Strategic Tool to Counter China's Economic Influence";
   const summary =
     section?.summary ??
-    "Political risk insurance plus certified zones unlock private capital and counter authoritarian financing.";
+    "TPRI transforms American development finance with comprehensive political risk coverage and aggressive recovery mechanisms.";
 
   return (
     <div

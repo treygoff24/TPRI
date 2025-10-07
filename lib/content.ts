@@ -22,7 +22,6 @@ import {
   TimelineEvent,
   ctaSchema,
   downloadSchema,
-  endorsementSchema,
   faqSchema,
   keyMetricsSchema,
   sectionFrontmatterSchema,
@@ -159,8 +158,8 @@ export async function loadDownloads(): Promise<DownloadResource[]> {
 }
 
 export async function loadEndorsements(): Promise<Endorsement[]> {
-  const file = path.join(CONTENT_ROOT, "endorsements.yml");
-  return readYamlCollection(file, endorsementSchema);
+  // Endorsements removed - returning empty array for backward compatibility
+  return [];
 }
 
 export async function loadKeyMetrics(): Promise<KeyMetrics> {

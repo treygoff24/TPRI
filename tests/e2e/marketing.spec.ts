@@ -6,7 +6,7 @@ test.describe("Marketing experience", () => {
   });
 
   test("hero highlights key message and CTAs", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: /Unlock \$3 Trillion in/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Strategic Tool to Counter/i })).toBeVisible();
     await expect(page.getByRole("link", { name: "View 2-Minute Brief" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Download Full Proposal" })).toBeVisible();
   });

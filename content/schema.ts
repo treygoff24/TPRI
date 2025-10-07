@@ -75,7 +75,7 @@ export const timelineEventSchema = z.object({
   title: z.string(),
   summary: z.string(),
   impact: z.string(),
-  sourceUrl: z.string().url(),
+  sourceUrl: z.string().url().optional(),
 });
 
 export const recognitionSchema = z.object({
@@ -100,7 +100,6 @@ export const contentBundleSchema = z.object({
   sections: z.array(sectionFrontmatterSchema),
   faqs: z.array(faqSchema),
   downloads: z.array(downloadSchema),
-  endorsements: z.array(endorsementSchema),
   stats: keyMetricsSchema,
   timeline: z.array(timelineEventSchema),
   recognition: recognitionDatasetSchema,

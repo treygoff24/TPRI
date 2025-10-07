@@ -1,0 +1,76 @@
+- id: taxpayer-exposure
+  question: What is the taxpayer exposure under TPRI?
+  answer: TPRI is designed to be budget-neutral or revenue-positive through its mandatory 3× recovery mechanism. When claims are paid, the U.S. government has three years to recover three times the claim amount using the full toolkit of economic statecraft—sanctions, tariffs, asset seizures, and litigation. Recovery proceeds flow to the Treasury general fund, making expropriation economically irrational for bad actors while strengthening the U.S. fiscal position.
+  audience: policymaker
+  category: Fiscal Impact
+  citationIds: ["ref-technical", "ref-budget"]
+
+- id: corporate-welfare
+  question: Isn't TPRI just corporate welfare for investors?
+  answer: No. TPRI provides insurance, not grants or subsidies. Investors pay premiums and Zone Operators must maintain 5-10% first-loss capital, ensuring they have skin in the game. The 70% U.S. ownership requirement for Zone Operators ensures American control and alignment with strategic interests. Unlike traditional subsidies, TPRI mobilizes private capital without direct taxpayer spending while advancing national security objectives.
+  audience: policymaker
+  category: Fiscal Policy
+  citationIds: ["ref-fiscal", "ref-zones"]
+
+- id: recovery-mechanism
+  question: How does the recovery mechanism work in practice?
+  answer: Upon claim payment, Treasury coordinates with State, Commerce, Defense, USTR, and Justice to recover three times the claim value within three years. Tools include targeted sanctions, tariffs, foreign asset seizures, visa restrictions, export controls, and international litigation. This whole-of-government approach creates powerful deterrence within a single political cycle, making expropriation prohibitively expensive for bad actors.
+  audience: policymaker
+  category: Enforcement
+  citationIds: ["ref-technical"]
+
+- id: sovereignty-concerns
+  question: Does TPRI undermine host nation sovereignty?
+  answer: No. Host nations voluntarily accede to TPRI through formal diplomatic instruments or SEZ designation requests. They maintain full sovereignty while agreeing to legal stability commitments and international arbitration for covered investments—standard provisions in modern investment treaties. Strategic Economic Zones operate within host nation legal systems while providing enhanced regulatory predictability. Countries can choose nationwide accession or zone-only participation based on their comfort level.
+  audience: policymaker
+  category: Sovereignty
+  citationIds: ["ref-sovereignty", "ref-zones"]
+
+- id: labor-standards
+  question: What labor protections does TPRI include?
+  answer: Strategic Economic Zones must require majority local national employment with skills transfer as a key performance indicator. Regulatory reciprocity with OECD standards includes labor rights, workplace safety, and fair compensation. Unlike many export-processing zones that import migrant labor or suppress wages, TPRI-covered zones ensure broad-based host-country buy-in and sustainable economic development.
+  audience: policymaker
+  category: Labor & Environment
+  citationIds: ["ref-standards", "ref-zones"]
+
+- id: environmental-standards
+  question: How does TPRI ensure environmental protections?
+  answer: Strategic Economic Zone certification requires regulatory reciprocity substantially equivalent to OECD environmental standards. Zones must demonstrate compliance with international best practices for environmental risk management, sustainability-focused regulations, and responsible development. This ensures TPRI-backed projects meet high environmental standards while balancing economic and ecological priorities.
+  audience: policymaker
+  category: Labor & Environment
+  citationIds: ["ref-standards"]
+
+- id: adversary-exclusion
+  question: How does TPRI prevent Chinese or adversarial entities from benefiting?
+  answer: The Act permanently excludes China, Russia, Iran, and North Korea from TPRI eligibility, with provisions for temporary exclusions of other countries for national security reasons. Zone Operators must be at least 70% owned by United States persons, ensuring American control. Qualifying investments receive thorough national security screening with expedited congressional review through a 30-day notification period.
+  audience: policymaker
+  category: National Security
+  citationIds: ["ref-adversary"]
+
+- id: constitutional-authority
+  question: What is the constitutional basis for TPRI?
+  answer: TPRI operates under Congress's constitutional authority to regulate foreign commerce and provide for the common defense. The Congressional-Executive Agreement structure has established precedent in U.S. trade policy. The Act creates statutory guarantees with treaty-like durability while maintaining appropriate congressional oversight through notification and joint resolution procedures.
+  audience: advanced
+  category: Legal Framework
+  citationIds: ["ref-constitution"]
+
+- id: dfc-transformation
+  question: How does TPRI transform DFC's impact?
+  answer: TPRI enables DFC to achieve dramatically more with existing resources through leverage and strategic focus. By providing umbrella coverage at the zone level rather than deal-by-deal underwriting, TPRI reduces transaction costs and accelerates deployment. Strategic Economic Zones create concentrated, de-risked environments that significantly improve deal flow—enabling DFC to selectively support high-impact investments that align with U.S. strategic and development priorities.
+  audience: policymaker
+  category: Implementation
+  citationIds: ["ref-implementation", "ref-mobilization"]
+
+- id: pri-comparison
+  question: How is TPRI different from traditional political risk insurance?
+  answer: Traditional DFC PRI limits compensation to capital invested for 3-20 years with deal-by-deal underwriting. TPRI pays full fair-market value including expected profits with 25-99 year terms and automatic umbrella coverage in certified zones. Most critically, TPRI implements mandatory whole-of-government action to recover 3× claim value within three years, compared to traditional insurance that relies only on private arbitration with no mandatory recovery mechanism.
+  audience: policymaker
+  category: Policy Design
+  citationIds: ["ref-comparison"]
+
+- id: oversight
+  question: What oversight mechanisms ensure TPRI serves U.S. interests?
+  answer: Multiple layers of oversight include executive designation authority with 30-day congressional notification and potential joint resolution disapproval, National Security Council review process for all Strategic Economic Zone designations, DFC audit authority over Zone Operator first-loss capital and due diligence, annual reporting requirements to Congress on claims, recoveries, and zone performance, and performance-based funding through regular appropriations process that aligns institutional incentives.
+  audience: policymaker
+  category: Accountability
+  citationIds: ["ref-oversight"]

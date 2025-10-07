@@ -4,47 +4,41 @@
     "date": "2005-01-01",
     "title": "China launches Belt and Road foothold in Latin America",
     "summary": "State-owned enterprises announce first wave of infrastructure loans in the region.",
-    "impact": "Establishes long-term financing leverage across critical logistics nodes.",
-    "sourceUrl": "https://example.org/source/bri-2005"
+    "impact": "Establishes long-term financing leverage across critical logistics nodes."
   },
   {
     "id": "2009-ecuador",
     "date": "2009-08-15",
-    "title": "Ecuador signs $7.5B hydroelectric package",
-    "summary": "Conditioned loans secure downstream oil shipments to Chinese refineries.",
-    "impact": "Demonstrates how debt leverage drives policy concessions.",
-    "sourceUrl": "https://example.org/source/ecuador-hydro"
+    "title": "Ecuador's Coca Codo Sinclair Dam construction begins",
+    "summary": "Chinese firm Sinohydro undertakes Ecuador's largest energy project for $2.25 billion, demonstrating China's infrastructure reach.",
+    "impact": "Demonstrates how debt leverage drives policy concessions and deepens Chinese influence in critical infrastructure."
   },
   {
     "id": "2016-honduras",
-    "date": "2016-09-22",
-    "title": "Próspera breaks ground on Roatán",
-    "summary": "A public-private governance partnership begins constructing the first Strategic Economic Zone aligned with U.S. standards.",
-    "impact": "Shows alternative model for transparent, rules-based development.",
-    "sourceUrl": "https://example.org/source/prospera-breakground"
+    "date": "2020-06-01",
+    "title": "Próspera launches on Roatán",
+    "summary": "A public-private governance partnership establishes the first Strategic Economic Zone aligned with U.S. standards.",
+    "impact": "Demonstrates alternative model for transparent, rules-based development that respects sovereignty."
   },
   {
     "id": "2018-dominican",
     "date": "2018-05-01",
-    "title": "Dominican Republic flips recognition to Beijing",
-    "summary": "A package of telecom and infrastructure deals follows the diplomatic shift.",
-    "impact": "Launches a new wave of PRC influence in the Caribbean basin.",
-    "sourceUrl": "https://example.org/source/dominican-recognition"
+    "title": "Dominican Republic switches recognition to Beijing",
+    "summary": "After 77 years of diplomatic relations with Taiwan, Dominican Republic establishes ties with PRC.",
+    "impact": "Part of broader pattern of Chinese diplomatic pressure in the Caribbean and Central America."
   },
   {
-    "id": "2023-paraguay",
-    "date": "2023-05-01",
-    "title": "Paraguay reaffirms ties with Taiwan",
-    "summary": "Despite intense pressure, Paraguay remains the last South American democracy aligned with Taipei.",
-    "impact": "Underscores urgency for U.S. economic engagement tools like TPRI.",
-    "sourceUrl": "https://example.org/source/paraguay-alliance"
+    "id": "2023-honduras-switch",
+    "date": "2023-03-26",
+    "title": "Honduras switches recognition to Beijing",
+    "summary": "Honduras becomes the latest Western Hemisphere nation to sever ties with Taiwan in favor of China.",
+    "impact": "Leaves Paraguay as the last South American country maintaining diplomatic relations with Taiwan."
   },
   {
-    "id": "2024-tpri-bill",
-    "date": "2024-09-15",
-    "title": "TPRI legislation introduced in Congress",
-    "summary": "Bipartisan sponsors unveil framework pairing TPRI with certified Strategic Economic Zones.",
-    "impact": "Creates pathway for mobilizing private capital at scale.",
-    "sourceUrl": "https://example.org/source/tpri-legislation"
+    "id": "2024-chancay",
+    "date": "2024-11-14",
+    "title": "Peru's Chancay megaport inaugurated",
+    "summary": "China's Cosco opens $3.6 billion strategic port with 60% ownership, transforming Pacific trade routes.",
+    "impact": "Gives Beijing substantial control over South American maritime logistics and trade infrastructure."
   }
 ]
