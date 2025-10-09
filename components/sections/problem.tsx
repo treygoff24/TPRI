@@ -100,10 +100,6 @@ export function ProblemSection() {
               </div>
             </div>
           </div>
-
-          {/* Decorative elements */}
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-primary rounded-full opacity-20" />
-          <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-accent rounded-full opacity-30" />
         </div>
       </div>
     </Section>
