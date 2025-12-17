@@ -3,7 +3,7 @@
     "collect": {
       "url": ["http://127.0.0.1:3000/"],
       "startServerCommand": "npm run build && npm run start",
-      "startServerReadyPattern": "started server on 0\.0\.0\.0:3000",
+      "startServerReadyPattern": "Ready in",
       "numberOfRuns": 1
     },
     "assert": {
