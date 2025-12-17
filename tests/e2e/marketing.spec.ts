@@ -16,6 +16,9 @@ test.describe("Marketing experience", () => {
     await expect(problemSection).toBeVisible();
     await expect(problemSection.getByText("$137B")).toBeVisible();
     await expect(problemSection.getByText("Diplomatic Recognition in the Americas")).toBeVisible();
+    await problemSection
+      .locator('[data-testid="recognition-map-container"]')
+      .scrollIntoViewIfNeeded();
     await expect(
       problemSection.locator('[data-testid="recognition-map"]'),
       "map renders",
