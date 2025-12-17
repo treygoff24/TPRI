@@ -5,6 +5,9 @@
       "startServerCommand": "npm run build && npm run start -- -p 3001",
       "startServerReadyPattern": "Ready in",
       "startServerReadyTimeout": 120000,
+      "settings": {
+        "preset": "desktop"
+      },
       "numberOfRuns": 1
     },
     "assert": {
