@@ -1,9 +1,10 @@
 {
   "ci": {
     "collect": {
-      "url": ["http://127.0.0.1:3000/"],
-      "startServerCommand": "npm run build && npm run start",
+      "url": ["http://127.0.0.1:3001/"],
+      "startServerCommand": "npm run build && npm run start -- -p 3001",
       "startServerReadyPattern": "Ready in",
+      "startServerReadyTimeout": 120000,
       "numberOfRuns": 1
     },
     "assert": {
