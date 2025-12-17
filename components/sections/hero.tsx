@@ -12,9 +12,7 @@ export function HeroSection() {
       <div className="relative z-10 text-center animate-fade-in">
         <h1 className="text-5xl sm:text-6xl lg:text-8xl font-serif font-bold text-text-primary mb-8 leading-tight">
           A Strategic Tool to Counter
-          <span className="block text-gradient mt-4 text-shimmer">
-            China&rsquo;s Economic Influence
-          </span>
+          <span className="block text-gradient mt-4">China&rsquo;s Economic Influence</span>
         </h1>
 
         <p className="text-2xl sm:text-3xl font-semibold text-text-secondary max-w-4xl mx-auto mb-6 leading-relaxed">
