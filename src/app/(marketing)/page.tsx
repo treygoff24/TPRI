@@ -8,8 +8,6 @@ import { SolutionSection } from "@/components/sections/solution";
 import type { CaseMetric, ResourceItem } from "@/components/sections/types";
 import { loadDownloads } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
-
 export default async function HomePage() {
   const downloads = await loadDownloads();
   const resources: ResourceItem[] = downloads.slice(0, 4).map((item) => ({

@@ -4,8 +4,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "next-themes";
 import { useEffect } from "react";
 
-import { useRegisterAnalytics } from "@/lib/analytics";
-
 function ServiceWorkerRegistrar() {
   useEffect(() => {
     const shouldRegister =
@@ -22,8 +20,6 @@ function ServiceWorkerRegistrar() {
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  useRegisterAnalytics();
-
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <ServiceWorkerRegistrar />

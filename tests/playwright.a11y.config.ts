@@ -7,7 +7,7 @@ if (shouldStartServer && !process.env.NEXT_PUBLIC_ENABLE_SW) {
 }
 
 export default defineConfig({
-  testDir: "./tests/e2e",
+  testDir: "./e2e",
   testMatch: /.*a11y\.spec\.ts/,
   timeout: 60_000,
   expect: {
