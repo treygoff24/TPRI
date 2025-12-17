@@ -23,7 +23,7 @@ test.describe("Marketing experience", () => {
   });
 
   test("solution pillars outline the program", async ({ page }) => {
-    const cards = page.locator("section#solution h3");
+    const cards = page.locator('section#solution [data-testid="solution-pillars"] h3');
     await expect(cards).toHaveCount(3);
     await expect(cards.first()).toHaveText(/Political Risk Insurance/);
   });
